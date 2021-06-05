@@ -1,0 +1,336 @@
+body {
+    background-color: whitesmoke;
+}
+
+
+/*************** Side Bar **************/
+#sideNav {
+    height: 100%;
+    width: 0;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 40px;
+    background-color: #212F3C;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+
+.logoContainer {
+    height: 60px;
+    width: 60px;
+    margin: 20px;
+}
+
+.logoIcon {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+#sideNav li {
+    list-style: none;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+#sideNav a {
+    text-decoration: none;
+    color: grey;
+    font-size: 20px;
+}
+
+#sideNav a:hover {
+    color: snow;
+}
+
+#navClose {
+    position: absolute;
+    top: 30px;
+    right: 25px;
+    display: block;
+}
+
+#main {
+    transition: margin-left 0.5s;
+}
+
+
+/************* Top Nav Bar *************/
+#topNavBar {
+    z-index: 1;
+    background-color: white;
+    height: 70px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+
+#navExpansion {
+    font-size: 30px;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    margin-left: 20px;
+    margin-top: 15px;
+}
+
+#topNavBar ul {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+#topNavBar li {
+    list-style: none;
+    display: inline-block;
+}
+
+.topBarImage {
+    height: 30px;
+    display: inline-block;
+}
+
+.topBarImageContainer {
+    display: inline-block;
+    float: right;
+    margin-right: 40px;
+    margin-top: 20px;
+    border-radius: 50%;
+    height: 50px;
+}
+
+
+/**************** Dashboard **************/
+#dashboard {
+    margin-top: 90px;
+    margin-left: 20px;
+}
+
+.infoBox {
+    background-color: white;
+}
+
+.infoTitle {
+    text-align: left;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.infoTitleContainer {
+    padding: 15px;
+    border-bottom: 1px solid #b5b5b5;
+}
+
+.dataContainer {
+    padding: 30px;
+    padding-left: 90px;
+    min-height: 100px;
+}
+
+.data {
+    font-size: 24px;
+    text-align: center;
+}
+
+
+/**************** Post listing ****************/
+
+#postList {
+    margin: 30px;
+    background-color: white;
+}
+
+#editPost {
+    right: 70px;
+    position: absolute;
+}
+
+.viewAllItem {
+    padding-top: 100px;
+    padding-left: 20px;
+}
+
+.viewAllItem:hover{
+    cursor: pointer;
+    color: #44aaee;
+}
+
+#viewAllContainer {
+    height: 70px;
+    width: 70px;
+    background-color: #b5b5b5;
+    border-radius: 50%;
+}
+
+#viewAllContainer:hover {
+    background-color: #44aaee;
+}
+
+.viewIcon {
+    margin-left: 17px;
+    margin-top: 12px;
+}
+
+.textbookImg {
+    height: 200px;
+    width: 150px;
+    margin: 15px;
+    margin-left: 10px;
+}
+
+
+.post {
+    border: 1px solid black;
+    border-radius: 1%;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+    box-shadow: 5px 8px #888888;
+}
+
+.deleteItem {
+    float: right;
+    display: none;
+}
+
+.deleteItem:hover {
+    cursor: pointer;
+}
+
+.seller{
+    margin-left: 20px;
+    display: block;
+}
+
+.price{
+    margin-right: 40px;
+    display: inline-block;
+    float: right;
+    color: #E9522D;
+    font-weight: bold;
+}
+
+.ISBN{
+    margin-left: 20px;
+    margin-bottom: 10px;
+    display: block;
+    color: grey;
+    font-size: 14px;
+}
+
+/**************** User listing ****************/
+
+#userList {
+    margin: 30px;
+    background-color: white;
+}
+
+#userSearch {
+    background-color: white;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+
+#userListEnd {
+    text-align: center;
+    display: block;
+    padding: 10px;
+}
+
+
+/*User Entry*/
+.userEntry{
+    background-color: white;
+    border-bottom: 1px solid grey;
+    overflow: hidden;
+    padding-left: 50px;
+}
+
+.noResultEntry{
+    background-color: white;
+    border-bottom: 1px solid grey;
+    overflow: hidden;
+    padding-left: 50px;
+    text-align: center;
+}
+
+.user {
+    display: inline-block;
+}
+
+.userPicContainer {
+    height: 60px;
+    width: 60px;
+    margin: 10px;
+    float: left;
+}
+
+.userPic{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+
+}
+
+.userContent {
+    margin: 0;
+    min-height: 50px;
+    width: 900px;
+    margin-top: 20px;
+}
+
+
+
+/*user management buttons*/
+
+.userAction{
+    display: inline-block;
+    float: right;
+    margin-right: 50px;
+    margin-top: 30px;
+}
+
+.deleteUser{
+    background-color: whitesmoke;
+    border-color: gainsboro;
+    border-width: 1px;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.viewUserDetail{
+    background-color: darkblue;
+    border-color: darkblue;
+    border-width: 1px;
+    font-weight: bold;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 5px;
+}
+
+
+/**************** Transaction listing ****************/
+
+#transactionList {
+    margin: 30px;
+    background-color: white;
+}
+
+.approve {
+    text-decoration: none;
+    color: green;
+}
+
+.deny {
+    text-decoration: none;
+    color: orangered;
+}
+

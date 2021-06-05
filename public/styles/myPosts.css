@@ -1,0 +1,321 @@
+body {
+    background-color: #e6ecf0;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#topBar {
+    float: top;
+    min-width: 1000px;
+    background-color: white;
+    border-bottom: 1px solid grey;
+    height: 70px;
+}
+
+#topBarLogo {
+    display: inline-block;
+    height: 50px;
+    position: relative;
+    margin-top: 8px;
+}
+
+#userInfo {
+    display: inline-block;
+    float: right;
+}
+
+#logIn {
+    position: relative;
+    right: 20px;
+    top: 10px;
+    height: 40px;
+    width: 64px;
+    outline: none;
+    background-color: blue;
+}
+
+#logInButtonText {
+    font-size: 150%;
+    color: white;
+}
+
+#posts {
+    margin-left: 200px;
+    margin-top: 15px;
+    max-width: 800px;
+    min-width: 500px;
+    margin-right: 100px;
+    background-color: #e6ecf0;
+    -ms-flex: 75%; /* IE10 */
+    flex: 75%;
+}
+
+.post{
+    border: 1px solid grey;
+    max-width: 800px;
+    min-width: 500px;
+    background-color: white;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-right: 16px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+#result{
+    color: blue;
+    font-weight: bold;
+}
+
+.profilePhoto {
+    height: 50px;
+    width: 50px;
+    float: left;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-top: 10px;
+
+}
+.userName {
+    font-size: 130%;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.category {
+    margin-top: 0;
+    margin-left: 10px;
+    font-size: 70%;
+    color: grey;
+}
+
+.condition  {
+    margin-top: 0;
+    margin-left: 10px;
+    font-size: 70%;
+    color: grey;
+
+}
+
+.timespan {
+    margin-top: 0;
+    margin-left: 10px;
+    font-size: 70%;
+    color: grey;
+
+}
+
+.description {
+    margin-left: 75px;
+}
+
+.price{
+    float: right;
+    position: relative;
+    right: 10px;
+    top: -25px;
+    font-weight: bold;
+}
+
+.soldItem {
+    margin-left: 40px;
+    margin-right: 40px;
+    font-weight: bold;
+    height: 26px;
+    font-size: 90%;
+    border-radius: 5px;
+    color: white;
+    background-color: dodgerblue;
+}
+
+.deleteItem {
+    font-weight: bold;
+    color: white;
+    background-color: dodgerblue;
+    height: 26px;
+    font-size: 90%;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+
+#searchResult {
+    padding: 10px;
+}
+
+.itemPicture {
+    margin-top: 10px;
+    display: inline-block;
+    margin-left: 75px;
+    width: 100px;
+    height: 100px;
+}
+
+.itemPicture:hover {
+    cursor: url("../images/magnifyingGlass.cur"), pointer;
+}
+
+#sortingOption {
+    width: 250px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 11px;
+    margin-left: 30px;
+}
+
+#signIn {
+    display: inline-block;
+    position:relative;
+    right: 30px;
+    bottom: 20px;
+    margin-top: 15px;
+}
+
+.topBarImage {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+}
+
+.topBarImageContainer {
+    display: inline-block;
+    border-radius: 50%;
+    height: 40px;
+}
+
+.topBarText {
+    font-weight: bold;
+    display: inline-block;
+    right: 20px;
+    font-size: 90%;
+}
+
+#myCart {
+    display: inline-block;
+    position: relative;
+    bottom: 20px;
+    right: 20px;
+}
+
+#shoppingCartNumber {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    background-color: red;
+    position: relative;
+    top: -15px;
+    right: 30px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+#cartNumber{
+    color: white;
+    font-size: 100%;
+    font-weight: bold;
+}
+
+#logOut {
+    display: inline-block;
+    right: 20px;
+    position: relative;
+    bottom: 20px;
+}
+
+#topBarIcons {
+    float: right;
+    position: relative;
+    top: 15px;
+    right: 10px;
+}
+
+.removeFromCart {
+    margin-bottom: 5px;
+    margin-left: 10px;
+    background-color: yellow;
+    font-weight: bold;
+    color: black;
+    height: 26px;
+    font-size: 90%;
+    border-radius: 5px;
+}
+
+.postId  {
+    margin-top: 0;
+    margin-left: 10px;
+    font-size: 70%;
+    color: grey;
+}
+
+#makePostButton {
+    height: 30px;
+    position: relative;
+    bottom: 30px;
+    right: 40px;
+    font-size: 120%;
+    background-color: #44aaee;
+    color: white;
+    border-radius: 10px;
+}
+
+#backToPostButton {
+    height: 30px;
+    bottom: 20px;
+    right: 10px;
+    font-size: 120%;
+    background-color: #44aaee;
+    color: white;
+    border-radius: 10px;
+}
+
+.deletePost {
+    margin-bottom: 5px;
+    margin-left: 10px;
+    background-color: red;
+    font-weight: bold;
+    color: white;
+    height: 26px;
+    font-size: 90%;
+    border-radius: 5px;
+}
+
+.profileImage {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border-style: solid;
+}
+
+.dealBySystem {
+    margin-left: 40px;
+    margin-right: 40px;
+    font-weight: bold;
+    height: 26px;
+    font-size: 90%;
+    border-radius: 5px;
+    color: black;
+    background-color: lightgray;
+}
+
+a {
+    text-decoration: none;
+}
+
+.addToCart:hover {
+    cursor: pointer;
+}
+
+.removeFromCart:hover {
+    cursor: pointer;
+}
+
+#makePostButton:hover {
+    cursor: pointer;
+}
+
+#searchButton:hover, #showAllButton:hover, .contactSeller:hover, .deleteItem:hover {
+    cursor: pointer;
+}
+

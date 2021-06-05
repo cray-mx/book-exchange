@@ -1,0 +1,11 @@
+index/cart.svg: https://www.flaticon.com/free-icon/online-shopping-cart_70369#term=cart&page=1&position=44
+index/user.svg: https://www.flaticon.com/free-icon/user_109718#term=man&page=1&position=24
+index/chat.svg: https://www.flaticon.com/free-icon/chat_784683#term=conversation&page=1&position=31
+index/chatting.svg: https://www.flaticon.com/free-icon/chatting_254017#term=conversation&page=1&position=64
+index/price-tag: https://www.flaticon.com/free-icon/price-tag_149397#term=price%20tag&page=1&position=1
+index/price-tag-color: https://www.flaticon.com/free-icon/price-tag_149397#term=price%20tag&page=1&position=1
+index/credit-card.svg: https://www.flaticon.com/free-icon/credit-cards-payment_71227#term=credit%20card&page=1&position=3
+index/debit-card.svg: https://www.flaticon.com/free-icon/debit-card_1086741#term=credit%20card&page=1&position=1
+index/piggy-bank.svg: https://www.flaticon.com/free-icon/piggy-bank_126511#term=piggy%20bank&page=1&position=2
+index/piggy-bank-color.svg: https://www.flaticon.com/free-icon/piggy-bank_138283#term=piggy%20bank&page=1&position=3
+index/arrow.svg: https://www.flaticon.com/free-icon/right-arrow_109617#term=arrow&page=1&position=3

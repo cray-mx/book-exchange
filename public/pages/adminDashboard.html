@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="/styles/adminDashboard.css" type="text/css" rel="stylesheet">
+    <link href="/styles/chatbox.css" type="text/css" rel="stylesheet">
+    <!--icon library-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<!--Chat Box-->
+<div id="chatRoom">
+    <div id="chatTitle">
+        <h5 id="chatName">user</h5>
+        <!--close button-->
+        <div id="chatHide">
+            <a href="#">&times;</a>
+        </div>
+    </div>
+
+    <!--messages-->
+    <div id="chat">
+        <!--A sample bubble-->
+        <div class="chatInBubble">
+            <p class="chatInText">Hello</p>
+        </div>
+    </div>
+
+    <!--write new message-->
+    <div id="message">
+        <form>
+            <textarea id="messageBox" placeholder="Message..."></textarea>
+            <button id="sendButton" class="submit"><i class="fa fa-send blue submit"></i></button>
+        </form>
+    </div>
+</div>
+
+<!--Side Navigation Bar-->
+<div id="sideNav">
+
+    <!--close side navigation bar-->
+    <a href="#" id="navClose">&times;</a>
+
+    <!--admin profile pic-->
+    <div class="logo">
+        <div class="logoContainer">
+            <a href="/">
+                <img src="/public/images/logo.png" class="logoIcon" alt="">
+            </a>
+        </div>
+    </div>
+
+    <ul class="navbar-side">
+        <li><a href="#dashboard"><i class="fa fa-fw fa-home"></i>Dashboard</a></li>
+        <li><a href="#postList"><i class="fa fa-fw fa-tags"></i>Posts</a></li>
+        <li><a href="#userList"><i class="fa fa-fw fa-user"></i>Users</a></li>
+        <li><a href="#transactionList"><i class="fa fa-fw fa-money"></i>Transactions</a></li>
+    </ul>
+</div>
+
+<!--Main Page-->
+<div id="main">
+    <!--Top Navigation Bar-->
+    <div id="topNavBar">
+        <!--Side Navbar Expansion-->
+        <span id="navExpansion">&#9776;</span>
+        <ul>
+            <!--Chat Button-->
+            <li>
+                <div id="chatShow" class="topBarImageContainer dropdown">
+                    <img class="topBarImage" id="chatShowButton" src="/images/admin/chat.png" alt="chatPlaceholder">
+
+                    <!--Dropdown List of Messages-->
+                    <div class="dropdownContent" id="chatRecords">
+                        <div class="profile">
+                            <form>
+                                <input id="userToChat" type="text" placeholder="New chat...">
+                                <button id="chatCreateButton"><i class="fa fa-plus"></i></button>
+                            </form>
+                        </div>
+                        <!--<div class="profile">-->
+                            <!--<div class="profileIconContainer">-->
+                                <!--<img src="../images/profilePic.jpg" alt="ProfilePic" class="profileIcon">-->
+                            <!--</div>-->
+                            <!--<div class="profileContent">-->
+                                <!--<strong>user</strong><br><span class="grey">Hello</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </li>
+
+            <!--Log Out Button-->
+            <li>
+                <a href="/api/logout">
+                    <div class="topBarImageContainer">
+                        <img class="topBarImage" src="/images/admin/logout.png" alt="logOutPlaceholder">
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!--Data Dashboard-->
+    <div id="dashboard" class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="infoBox">
+                <div class="infoTitleContainer">
+                    <span class="infoTitle">Messages</span>
+                </div>
+                <div class="dataContainer">
+                    <span id="msgData" class="data">0</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="infoBox">
+                <div class="infoTitleContainer">
+                    <span class="infoTitle">Transactions</span>
+                </div>
+                <div class="dataContainer">
+                    <span id="transactionData" class="data">0</span>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="infoBox">
+                <div class="infoTitleContainer">
+                    <span class="infoTitle">Posts</span>
+                </div>
+                <div class="dataContainer">
+                    <span id="postData" class="data">0</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="infoBox">
+                <div class="infoTitleContainer">
+                    <span class="infoTitle">Users</span>
+                </div>
+                <div class="dataContainer">
+                    <span id="userData" class="data">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--List of Posts-->
+    <div id="postList">
+        <div class="infoTitleContainer">
+            <span class="infoTitle">Post</span>
+            <a id="editPost" href="#">edit</a>
+        </div>
+        <div class="row" id="postListRow">
+            <div class="col-lg-2 col-md-4">
+                <div class="post">
+                    <span class="deleteItem"><i class="fa fa-fw fa-close"></i></span>
+                    <img src="/images/admin/textbook2.jpg" alt="textbook1" class="textbookImg">
+                    <span class="seller">user_001</span>
+                    <span class="ISBN">123456789</span>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-2 col-md-4" id="viewAll">
+                <div class="viewAllItem">
+                    <!--<a href="items.html">-->
+                        <div id="viewAllContainer">
+                            <img src="/images/admin/next.png" alt="View All" class="viewIcon">
+                        </div>
+                        View All
+                    <!--</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="userList">
+        <div class="infoTitleContainer">
+            <span class="infoTitle">User</span>
+
+            <!--Search User-->
+            <form id="userSearch">
+                <input id="userKeyword" type="text" placeholder="Search...">
+                <button id="userSearchButton"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+
+        <div id="userTable">
+            <!--<div class="userEntry">-->
+                <!--<div class='user'>-->
+                    <!--<div class="userPicContainer">-->
+                        <!--<img src="../images/profilePic.jpg" class="userPic" alt="userPic">-->
+                    <!--</div>-->
+                    <!--<div class="userContent">-->
+                        <!--<strong>user(Sample User)</strong>-->
+                        <!--<p> Here is my bio description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus-->
+                            <!--faucibus quam ante....</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="userAction">-->
+                    <!--<button class="viewUserDetail" id="sampleViewUser">View Detail</button>-->
+                    <!--<button class="deleteUser" disabled>Delete</button>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+
+        <span id="userListEnd">
+            <a id="showMoreUser" href="">Show More</a> / <a id="showLessUser" href="">Show Less</a>
+        </span>
+    </div>
+
+    <!--Table of Transactions-->
+    <div id="transactionList">
+        <div class="infoTitleContainer">
+            <span class="infoTitle">Transactions</span>
+        </div>
+
+        <table id="transactionTable" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Buyer</th>
+                <th>Seller</th>
+                <th>Amount</th>
+                <th>Credit Card</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--<script type="text/javascript" src="../scripts/classes.js"></script>-->
+<script type="text/javascript" src="/scripts/adminDashboard.js"></script>
+<script type="text/javascript" src="/scripts/chatbox.js"></script>
+
+</body>
+</html>

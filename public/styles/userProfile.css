@@ -1,0 +1,240 @@
+/**************** Center the Page **************/
+#content {
+  max-width: 500px;
+  margin: auto;
+}
+
+/**************** Profile picture **************/
+#profile{
+  padding: 3%;
+  margin-top: 12%;
+  margin-bottom: 3%;
+  border-radius: 0.5rem;
+  background: #fff;
+  text-align: center;
+}
+
+#profilePic{
+  text-align: center;
+
+}
+#profilePic img{
+  border-radius: 50%;
+  width: 50%;
+  height: 50%;
+  max-width: 250px;
+  max-height: 300px;
+}
+
+#profilePic .file {
+  position: relative;
+  overflow: hidden;
+  margin-top: -20%;
+  width: 70%;
+  border: none;
+  border-radius: 0;
+  font-size: 15px;
+  background: #212529b8;
+}
+
+#profilePic .file input {
+  pointer: cursor;
+  position: absolute;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+
+/**************** Other Profile Information **************/
+
+#profileInfo p {
+  font-weight: bold;
+}
+
+#profileInfo span {
+  font-weight: normal;
+  color: black;
+}
+
+#profileInfo a {
+  font-weight: bold;
+}
+
+.phoneEdit{
+  cursor: pointer;
+}
+
+
+.file-upload{
+  cursor: pointer;
+}
+
+.boxed {
+  border: 1px solid black ;
+}
+
+/************* Top Nav Bar*************/
+#topNavBar {
+  z-index: 1;
+  background-color: white;
+  height: 70px;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+#topNavBar ul {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+#topNavBar li {
+  list-style: none;
+  display: inline-block;
+}
+
+.topBarImage {
+  height: 30px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.topBarImageContainer {
+  display: inline-block;
+  float: right;
+  margin-right: 40px;
+  margin-top: 20px;
+  border-radius: 50%;
+  height: 50px;
+}
+
+#myCart {
+  display: inline-block;
+}
+
+#shoppingCartNumber {
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  background-color: red;
+  position: relative;
+  border-radius: 50%;
+  text-align: center;
+}
+
+#cartNumber{
+  color: white;
+  font-size: 100%;
+  font-weight: bold;
+}
+
+/************* Select Payment Method *************/
+#payment {
+  display: inline-block;
+}
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+  width:200px;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: mediumpurple;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: darkgrey;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#topBarLogo {
+  display: inline-block;
+  height: 50px;
+  position: relative;
+  margin-top: 8px;
+}
+
+#postIMade {
+  background: transparent;
+  border-style: none;
+  outline: none;
+  text-decoration: underline;
+  color: mediumpurple;
+}
+
+.myPosts {
+  font-weight: bold;
+  pointer: cursor;
+  font-size: 14px;
+}
+
+.fill{
+  width: 100%;
+}
+
+#itemsIBought {
+  background: transparent;
+  border-style: none;
+  outline: none;
+  text-decoration: underline;
+  color: mediumpurple;
+}
+
+.myPurchases {
+  font-weight: bold;
+  pointer: cursor;
+  font-size: 14px;
+}
+
+
+#myPurchases:hover, #myPosts:hover {
+  cursor: pointer;
+}

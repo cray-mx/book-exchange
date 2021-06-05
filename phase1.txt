@@ -1,0 +1,252 @@
+Login Credentials: (1) Standard user: username user, password: user
+		 	- A standard user has access to all of the pages, except the admin dashboard page.
+	     	   (2) Admin user: username: admin, password: admin
+		 	- For admin user, you will enter admin dashboard page directly after "Log in" on index page.
+
+
+Functionality:
+
+index page:
+       1. Search
+          when click on "Search on UofTExchange", the result will show all the items posted,
+          if there is no input in the "Search item" input box, or show items related to the
+          input otherwise.
+
+          The search function will requires a server call to pull related result from database.
+          As a result, in phase1, after clicking the search button, it will generate the page
+          with hardcoded posts array in class.js as a demonstration.
+
+       2. Log In
+          The page will jump to login page
+
+       3. My cart
+          If user did not log in, the page will jump to login page.
+          Otherwise, the page will jump to the user's shopping cart.
+
+
+login page:
+       This page is shown when the user clicks "Log in" on the index page.
+
+       1. Log In
+          Please use the credentials as in "Credential" section above to log in.
+          Log in using Admin credential will jump to the admin dashboard. Log in using
+          normal user credential will jump to the profile page.
+
+       2. Sign Up
+	  User jumps to create account page.
+          Note：The newly created user will not be saved in this phase.
+          	In Phase 2, we will implement this functionality by saving user information in the database
+          	when "submit" is clicked on, and look up this user information when log in.
+
+
+create account page:
+	This page is shown when the user clicks "Sign up" on the login page.
+
+        1. Enter account information that will be used to add a new user to the database.
+
+        2. As noted in #2 of login page, this full functionality will be implemented in phase 2.
+
+
+shopping cart page:
+	This page is shown when the user clicks on the top right shopping cart icon on certain pages.
+
+	This page is the collection of postings that the user selected "Add to Cart" in the items page.
+	1. Remove from Cart
+	   When the user clicks "Remove from Cart" in a certain item in the cart, that item will be removed from the cart.
+
+	2. Contact the Seller
+           Since the implementation of the chatting system requires a server and more back end support, 
+	   for phase 1, our message box is hard coded. Therefore, we hard coded to make the first
+	   "Contact Seller" button work in the post of "user1 user1". When the user clicks "Contact Seller",
+	   the user should enter a chat box with the corresponding seller. The first "Contact Seller" button works and 
+	   shows as an example of what the user should see when they click any "Contact Seller" buttons in Phase 2. 
+		
+	   Note: We will have all the "Contact Seller" buttons work well when the chatting system works in Phase 2.
+
+	3. Buy this Item
+	   User clicks on "Buy this item" in a certain posting, the user will jump to the payment page to fill out payment information.
+	
+	4. Chat with Others (functionality for both user and admin)
+           When click on the the "chat" icon on the top-right side of the page.
+           A dropdown list of messages will show up and when click on the messages,
+           a chatbox will show up at the bottom-right.
+
+           User can send messages using the chatbox to other users.
+
+           Note: In Phase 2, we will use database to store messages and load previous messages
+                 to chat window.
+
+	5. My User Profile (to the right of top navigation bar, the circle filled with a profile picture)
+	   User jumps to user profile page.
+	
+
+items page:
+	This page is shown when the user clicks on "Search on UofTExchange" on the index page.
+
+	1. Sorting items (View by price/type/post date)
+	   User can select how to view the postings among sorting by (1)Posting time(New to Old), (2)Posting time(Old to New), 
+	   (3)price(High to Low) and (4)price(Low to High). 
+
+	2. Add to Cart/Remove from Cart
+	   When the user clicks "Add to Cart" in a certain posting, that item will be added to "My cart" and the user can
+	   see the number of items in "My cart" has incremented by 1. The "Add to Cart" button will also change to a highlighted 
+	   "Remove from Cart" button. If the user choose to "Remove from Cart" of an item, the shopping cart will also remove
+	   the item and the user can see the number of items in "My cart" has decremented by 1.
+
+	3. Contact the Seller
+           Since the implementation of the chatting system requires a server and more back end support, 
+	   for phase 1, our message box is hard coded. Therefore, we hard coded to make the first
+	   "Contact Seller" button work in the post of "user1 user1". When the user clicks "Contact Seller",
+	   the user should enter a chat box with the corresponding seller. The first "Contact Seller" button works and 
+	   shows as an example of what the user should see when they click any "Contact Seller" buttons in Phase 2. 
+		
+	   Note: We will have all the "Contact Seller" buttons work well when the chatting system works in Phase 2.
+
+	4. Buy this Item
+	   User clicks on "Buy this item" in a certain posting, the user will jump to the payment page to fill out payment information.
+
+	5. Chat with Others (functionality for both user and admin)
+           When click on the the "chat" icon on the top-right side of the page.
+           A dropdown list of messages will show up and when click on the messages,
+           a chatbox will show up at the bottom-right.
+
+           User can send messages using the chatbox to other users.
+
+           Note: In Phase 2, we will use database to store messages and load previous messages
+                 to chat window.
+
+	6. Make My Post
+	   User jumps to post-ad page.
+
+	7. My User Profile (to the right of top navigation bar, the circle filled with a profile picture)
+	   User jumps to user profile page. For phase1, we just jump to the profile page of user "user".
+	   This will jump to the currently logged in user in phase2.
+
+	8. Manage Shopping Cart
+	   User jumps to the shopping cart page to manage his or her cart.
+
+	9. Log Out
+	   The user logs out and we return the user to the main index page.
+
+
+user profile page:
+	This page is shown when the user logs in with username = user, password = user from the index page.
+	This page also shows when the user clicks the top right circle filled with a profile picture on certain pages.
+
+	1. Edit profile information
+           User will be able to edit their profile picture, bio, phone number, email address and payment method.
+
+           (1)User will select "Choose File" under the profile picture and then select a picture on his or her computer.
+	   For Phase 1, it works up until the point that the file selected is correctly showing its name on the page.  
+
+	   (2)User will click on the "pencil" icons to make edits to bio, phone number and email address. After the user is
+	   done with the edits, the user will click on the "save" icons to save the changes made.
+	
+	   (3)User will click on the payment method drop down box and select their preferred payment method. Here is only for the
+	   profile information, we don't ask to fill in credit card information. The actual transaction will be handled when 
+	   the user purchases a book from the postings page (items.html).
+	  
+	   Note: To show the effect of changing profile picture, we decided to use PHP or jQuery in Phase 2 to store the input 
+	    	 files and implement the full functionality then. In Phase 2, the picture uploaded will be stored
+           	 in database.
+
+	2. Manage Shopping Cart
+	   User jumps to the shopping cart page to manage his or her cart.
+
+	3. Chat with Others (functionality for both user and admin)
+           When click on the the "chat" icon on the top-right side of the page.
+           A dropdown list of messages will show up and when click on the messages,
+           a chatbox will show up at the bottom-right.
+
+           User can send messages using the chatbox to other users.
+
+           Note: In Phase 2, we will use database to store messages and load previous messages
+                 to chat window.
+
+	4. Posts I've Made
+	   This button jumps to the list of posts I've made in the postings page (items.html). For Phase 1 now, it jumps to all the
+	   posts made by all users because we don't have the "search" functionality implemented yet. "Search" will be implemented with
+	   a back end database search in Phase 2.
+	
+	   Note: In Phase 2, after we implemented the "search" functionality on our postings page (items.html), this link will refer to
+		 the page of items.html filtered by searching with the username of the current user.
+	
+	5. Log Out
+	   The user logs out and we return the user to the main index page.
+	  
+
+admin dashboard page:
+	This page is shown when the admin logs in with username = admin, password = admin from the index page.
+
+	1. Side Navigation Bar:
+            The side navigation bar will be open when click on the 'hamburger' icon,
+            and be closed when click on the 'close' icon in the side navigation bar.
+
+            The main part the page will jump to the corresponding section when click on
+            the tags "Dashboard", "Users", "Posts" and "Transactions"
+
+        2. Chat with Others (functionality for both user and admin)
+           When click on the the "chat" icon on the top-right side of the page.
+           A dropdown list of messages will show up and when click on the messages,
+           a chatbox will show up at the bottom-right.
+ 
+           User can send messages using the chatbox to other users.
+
+           Note: In Phase 2, we will use database to store messages and load previous messages
+                 to chat window.
+
+        3. Manage Posts:
+           When click on 'edit', the post section will change to edit mode, and the admin will
+           be able to delete a post by clicking on the "close" icon.
+
+        4. Manage Users:
+           When click on "show more / show less", more or less users will be displayed.
+           Admin will be able to delete a user when click on the corresponding delete button,
+           or view a user's profile in detail when click on "View Detail". Note that, in phase1,
+           only the first user is linked to the profile page. Other "view Detail" buttons are not
+           functional and they will be complete in phase2.
+
+           The search bar is already functional. And the "Delete" button can correctly remove user from the page.
+           
+	   Note: The actual delete user will require the assistant of server, which will be
+           	 implemented in Phase 2.
+
+        5. Manage Transactions:
+            The transactions which have not been processed by the admin yet will show up in
+            this section.
+            When click on the green check icon, the admin will approve the transaction and
+            when click on the red cross icon, the admin will deny the transaction.
+
+	6. Log Out
+	   The user logs out and we return the user to the main index page.
+
+
+post-ad page:
+	This page is shown when user clicks "Make My Post" in the postings page (items.html). 
+
+        1. There are three section that the user must complete in order to post a new ad of the
+           item they want to sell. Note: this page was designed using a css framework.
+
+        2. Each section must be filled out, otherwise an alert message will warn the user to
+           complete each field.
+
+        3. If a price is entered AND a radio button is selected, it will prioritize the entered
+           monetary amount.
+
+        4. Upon successfully posting a new ad, the site will redirect the user back to their
+           profile page. In phase 2, when there we have a database, it will redirect the user
+           to the search page containing their new post.
+	
+	5. There is a back button to the right of the top navigation bar. The user can go back to the
+	   list of postings page should he or she decided not to make a post.
+
+
+payment page:
+	This page is shown when user clicks "Buy this Item"
+
+        1. Standard payment method form page
+	   User will enter all personal information and credit card information fields. After that, the user clicks
+	   "Pay now" to complete the online purchase.
+
+
+

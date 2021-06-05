@@ -1,0 +1,120 @@
+@charset "UTF-8";
+#createAccount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  background: #F7F7F7;
+}
+#createAccount .createAccountCard {
+  background: #fff;
+  width: 32rem;
+  box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.11);
+}
+#createAccount .createAccountCard .card-title {
+  background-color: #118fe4;
+  padding: 2rem;
+}
+#createAccount .createAccountCard .card-title h1 {
+  color: #fff;
+  text-align: center;
+  font-size: 1.2rem;
+}
+#createAccount .createAccountCard .content {
+  padding: 3rem 2.5rem 5rem;
+}
+#createAccount .createAccountCard .fillOut {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  margin-bottom: 1.75rem;
+  padding: 0.25rem 0;
+  border: none;
+  border-bottom: 1px solid #dbdbdb;
+  transition: all 0.5s;
+}
+#createAccount .createAccountCard .fillOut:hover {
+  border-color: #7a7a7a;
+}
+#createAccount .createAccountCard .fillOut:active, #createAccount .createAccountCard .fillOut:focus {
+  border-color: #209cee;
+}
+#createAccount .createAccountCard .checkbox {
+  color: #b5b5b5;
+  font-size: 0.8rem;
+}
+#createAccount .createAccountCard .checkbox span {
+  margin-left: 0.5rem;
+}
+#createAccount .createAccountCard a {
+  font-size: 0.8rem;
+}
+#createAccount .createAccountCard .options {
+  color: #b5b5b5;
+  margin-bottom: 1.5rem;
+}
+#createAccount .createAccountCard button {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #209cee;
+  border-radius: 4rem;
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: 2px solid #209cee;
+  padding: 0.9rem 0 1.1rem;
+  transition: color 0.5s, border-color 0.5s;
+}
+#createAccount .createAccountCard button:hover, #createAccount .createAccountCard button:focus {
+  color: #0f81cc;
+  border-color: #0f81cc;
+}
+#createAccount .createAccountCard button:active {
+  transform: translateY(1px);
+}
+
+label {
+  cursor: pointer;
+}
+
+.regular-checkbox {
+  display: none;
+}
+
+.regular-checkbox + label {
+  background-color: #fafafa;
+  border: 1px solid #dbdbdb;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  padding: 7px;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+}
+
+.regular-checkbox:checked + label {
+  background-color: #e9ecee;
+}
+
+.regular-checkbox:checked + label:after {
+  content: "✔";
+  font-size: 11px;
+  position: absolute;
+  top: 0;
+  left: 3px;
+  color: #b5b5b5;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+.navbar {
+  background: #F7F7F7;
+}
+
+.logo{
+  width: 250px;
+}

@@ -1,0 +1,491 @@
+body {
+    background-color: #e6ecf0;
+    margin: 0;
+    min-width: 1415px;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+
+#topBar {
+    float: top;
+    min-width: 1000px;
+    background-color: white;
+    border-bottom: 1px solid grey;
+    height: 70px;
+    position: relative;
+}
+
+#topBarLogo {
+    display: inline-block;
+    height: 50px;
+    position: relative;
+    margin-top: 9px;
+}
+
+#searchForm {
+    display: inline;
+    text-align: center;
+    position: absolute;
+    left: 300px;
+    top: 0px;
+}
+
+#userInfo {
+    display: inline-block;
+    position: absolute;
+    left: 89%;
+    margin-top: 10px;
+}
+
+#logOut {
+    display: inline-block;
+    margin-top: 20px;
+    bottom: 10px;
+    position: absolute;
+    left: 94%;
+    right: 30px;
+}
+
+#searchBox {
+    height: 35px;
+    width: 400px;
+    outline: none;
+    box-shadow: 0px 1px 1px 1px grey;
+    position: absolute;
+    top: 13px;
+    border-radius: 20px;
+}
+
+#searchButton {
+    height: 40px;
+    width: 80px;
+    margin-left: 30px;
+    margin-top: 20px;
+    position: relative;
+    left: 400px;
+    top: -8px;
+    padding: 0;
+    background-color: lightgrey;
+}
+
+#searchButtonText {
+    font-size: 150%;
+    color: grey;
+}
+
+#searchButton:hover {
+    background-color: white;
+}
+
+#logIn {
+    position: relative;
+    right: 20px;
+    bottom: 10px;
+    height: 40px;
+    width: 64px;
+    outline: none;
+    background-color: dodgerblue;
+}
+
+#logInButtonText {
+    font-size: 150%;
+    color: white;
+}
+
+#selectAll{
+    margin-left: 200px;
+    margin-bottom: 30px;
+}
+
+.selectContainer{
+    min-width: 500px;
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.select{
+    font-size: 120%;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+#posts {
+    margin-left: 200px;
+    margin-top: 15px;
+    max-width: 800px;
+    min-width: 500px;
+    margin-right: 100px;
+    background-color: #e6ecf0;
+    -ms-flex: 75%; /* IE10 */
+    flex: 75%;
+}
+
+.post{
+    border: 1px solid grey;
+    max-width: 800px;
+    min-width: 500px;
+    background-color: white;
+    margin-left: 40px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-right: 16px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.profilePhoto {
+    height: 50px;
+    width: 50px;
+    float: left;
+    border-style: solid;
+    border-color: grey;
+    border-radius: 50%;
+    margin-left: 10px;
+    margin-top: 10px;
+
+}
+.userName{
+    font-size: 130%;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.category {
+    margin-top: 0;
+    margin-left: 10px;
+    font-size: 70%;
+    color: grey;
+}
+
+.condition {
+    margin-top: 0;
+    margin-left: 10px;
+    font-size: 70%;
+    color: grey;
+
+}
+
+.description {
+    margin-left: 75px;
+}
+
+.price{
+    float: right;
+    position: relative;
+    right: 10px;
+    top: -25px;
+    font-weight: bold;
+}
+
+.removeFromCart {
+    margin-bottom: 5px;
+    margin-left: 10px;
+    background-color: dodgerblue;
+    font-weight: bold;
+    color: white;
+    height: 26px;
+    font-size: 90%;
+    border-radius: 5px;
+}
+
+.contactSeller {
+    margin-left: 20px;
+    margin-right: 0;
+    font-weight: bold;
+    color: white;
+    background-color: dodgerblue;
+    height: 26px;
+    font-size: 90%;
+    border-radius: 5px;
+}
+
+.buyItem {
+    font-weight: bold;
+    color: white;
+    background-color: dodgerblue;
+    height: 26px;
+    font-size: 90%;
+    border-radius: 5px;
+    margin-left: 40px;
+}
+
+#searchResult {
+    padding: 10px;
+}
+
+.itemPicture {
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+    display: inline-block;
+    margin-left: 75px;
+}
+
+.itemPicture:hover {
+    cursor: url("../images/magnifyingGlass.cur"), pointer;
+}
+
+#emptyInformation {
+    font-weight: bold;
+    font-size: 200%;
+    background-color: #e6ecf0;
+    margin-top: 10px;
+}
+
+.loginProfilePhoto {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    position: relative;
+    top: 10px;
+    right: 20px;
+    border-style: solid;
+    border-color: grey;
+}
+
+.timespan {
+    margin-top: 0;
+    margin-left: 10px;
+    font-size: 70%;
+    color: grey;
+}
+
+#chatShow {
+    position: absolute;
+    left: 85%;
+    margin-right: 30px;
+    bottom: 20px;
+    margin-top: 20px;
+}
+
+.chatShowButton {
+    display: inline-block;
+    position: relative;
+    bottom: 10px;
+    left: 1350px;
+    margin-top: 20px;
+}
+
+.profileImage {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border-style: solid;
+}
+
+.topBarImage {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.topBarImageContainer {
+    display: inline-block;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.topBarText {
+    font-weight: bold;
+    display: inline-block;
+    right: 20px;
+    font-size: 90%;
+}
+
+#sendIcon {
+    height: 20px;
+    width: 20px;
+}
+
+.postId  {
+    margin-top: 0;
+    margin-left: 10px;
+    font-size: 70%;
+    color: grey;
+
+}
+
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-top: 10px;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: white;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: white;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.col-25 {
+    width: 300px;
+    padding: 0 16px;
+    background-color: white;
+    border-radius: 4px;
+    margin-top: 25px;
+    height: 80%;
+}
+
+.checkout {
+    background-color: #f2f2f2;
+    padding: 5px 20px 15px 20px;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+}
+
+span.amount {
+    float: right;
+    color: grey;
+}
+
+span.total {
+    float: right;
+    color: black;
+}
+
+.row {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap; /* IE10 */
+    flex-wrap: wrap;
+    margin: 0 -16px;
+}
+
+:root {
+    --color-flower: #353866;
+    --color-smoke: #e4e4e4;
+}
+
+.button {
+    display: flex;
+    overflow: hidden;
+    margin-left: 30%;
+    padding: 12px 12px;
+    cursor: pointer;
+    user-select: none;
+    transition: all 150ms linear;
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none !important;
+    text-transform: capitalize;
+    color: #fff;
+    border: 0 none;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.3;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 160px;
+    box-shadow: 2px 5px 10px var(--color-smoke);
+    margin-top: 50px;
+}
+
+.button:hover {
+    transition: all 150ms linear;
+    opacity: 0.85;
+}
+
+.button:active {
+    transition: all 150ms linear;
+    opacity: 0.75;
+}
+
+.button:focus {
+    outline: 1px dotted #959595;
+    outline-offset: -4px;
+}
+
+.button.-flower {
+    color: #FE8CDF;
+    background: var(--color-flower);
+}
+
+.canNotProcess {
+    margin-bottom: 5px;
+    margin-left: 10px;
+    background-color: lightgray;
+    font-weight: bold;
+    color: black;
+    height: 26px;
+    font-size: 90%;
+    border-radius: 5px;
+}
+
+#endOfResults{
+    text-align: center;
+    padding: 5px;
+    border: 1px solid grey;
+    background-color: white;
+    border-radius: 10px;
+    margin-left: 40px;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+.removeFromCart:hover, .contactSeller:hover {
+    cursor:pointer;
+}

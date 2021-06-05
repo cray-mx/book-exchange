@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Shooping Cart</title>
+    <link href="/styles/shoppingCart.css" type="text/css" rel="stylesheet" />
+    <link href="/styles/chatboxOther.css" type="text/css" rel="stylesheet" />
+    <!--Lightbox CSS-->
+    <link href="/lightbox/css/lightbox.css" rel="stylesheet" />
+    <!--jquery for lightbox-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <!--Chat Box-->
+    <div id="chatRoom">
+      <div id="chatTitle">
+        <h5 id="chatName">user</h5>
+        <!--close button-->
+        <div id="chatHide">
+          <a href="#">&times;</a>
+        </div>
+      </div>
+
+      <!--messages-->
+      <!-- <div id="chat"> -->
+      <!--A sample bubble-->
+      <!--<div class="chatInBubble">-->
+      <!--<p class="chatInText">Hello</p>-->
+      <!--</div>-->
+      <!-- </div> -->
+
+      <!--write new message-->
+      <div id="message">
+        <form>
+          <textarea id="messageBox" placeholder="Message..."></textarea>
+          <button id="sendButton" class="submit">
+            <i class="fa fa-send blue submit"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div id="topBar">
+      <a href="/index.html">
+        <img id="topBarLogo" src="/images/logo.png" alt="logo" />
+      </a>
+
+      <!-- <div id="chatShow" class="topBarImageContainer dropdown">
+        <img class="topBarImage" id="chatShowButton" src="/images/admin/chat.png" alt="chatPlaceholder"/> -->
+
+      <!--Dropdown List of Messages-->
+      <!-- <div class="dropdownContent" id="chatRecords">
+          <div class="profile">
+            <form>
+              <input id="userToChat" type="text" placeholder="New chat..." />
+              <button id="chatCreateButton"><i class="fa fa-plus"></i></button>
+            </form>
+          </div>
+        </div>
+      </div> -->
+
+      <!--This is used to hold the user icon after login-->
+      <div id="userInfo">
+        <button id="logIn">
+          <a href="login.html"> </a>
+          <span id="logInButtonText">Log In</span>
+        </button>
+      </div>
+
+      <div id="logOut">
+        <a href="/api/logout">
+          <div class="topBarImageContainer">
+            <img
+              class="topBarImage"
+              src="/images/admin/logout.png"
+              alt="logOutPlaceholder"
+            />
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div id="resultPage">
+      <div id="searchResult">Here is your shopping cart.........</div>
+      <div class="row">
+        <!--Select All-->
+        <label class="container" id="selectAll">
+          <input type="checkbox" checked="checked" id="selectAllCheck" />
+          <span class="checkmark"></span>
+        </label>
+        <div class="selectContainer" id="selectAllContainer">
+          <span class="select"> Select All </span>
+        </div>
+
+        <!--Posts-->
+        <div id="posts">
+          <label class="container">
+            <input type="checkbox" checked="checked" class="check" />
+            <span class="checkmark"></span>
+          </label>
+          <div class="post">
+            <img
+              class="profilePhoto"
+              src="/images/items/seller1.jpg"
+              alt="sellerPhoto"
+            />
+            <span class="userName"> Donald Trump </span>
+            <br />
+            <span class="category"> Category: Books </span>
+            <span class="condition"> Condition: New </span>
+            <div class="price">CAD 19.99</div>
+            <div class="description">
+              I want to sell a textbook for MAT224. Please contact me if you
+              want more information!
+            </div>
+            <hr />
+            <button class="removeFromCart">Remove from Cart</button>
+            <button class="contactSeller">Contact the Seller</button>
+          </div>
+          <label class="container">
+            <input type="checkbox" checked="checked" class="check" />
+            <span class="checkmark"></span>
+          </label>
+          <div class="post">
+            <img
+              class="profilePhoto"
+              src="/images/items/seller2.jpeg"
+              alt="sellerPhoto"
+            />
+            <span class="userName"> Mike Penth </span>
+            <br />
+            <span class="category"> Category: Books </span>
+            <span class="condition"> Condition: New </span>
+            <div class="price">CAD 29.99</div>
+            <div class="description">
+              I want to sell a textbook for MAT223. Please contact me if you
+              want more information!
+            </div>
+            <div class="pictureContainer">
+              <a
+                href="/images/items/sampleBook1.jpg"
+                data-lightbox="sampleBook1"
+              >
+                <img
+                  class="itemPicture"
+                  src="/images/items/sampleBook1.jpg"
+                  alt="picture"
+                />
+              </a>
+            </div>
+            <hr />
+            <button class="removeFromCart">Remove from Cart</button>
+            <button class="contactSeller">Contact the Seller</button>
+          </div>
+        </div>
+        <div class="col-25">
+          <div id="checkout">
+            <h4>
+              Order Summary
+              <span class="total">
+                <i class="fa fa-shopping-cart"></i>
+                <b>0</b>
+              </span>
+            </h4>
+            <hr />
+            <p id="summary">
+              Total<span class="total"><b id="sum">$0</b></span>
+            </p>
+            <section>
+              <p>
+                <button
+                  id="payButton"
+                  class="button -flower center"
+                  type="submit"
+                >
+                  Place Order
+                </button>
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Script for lightbox-->
+    <script src="/lightbox/js/lightbox.js"></script>
+
+    <!--Javascript-->
+    <script type="text/javascript" src="/scripts/shoppingCart.js"></script>
+    <script type="text/javascript" src="/scripts/chatbox.js"></script>
+  </body>
+</html>

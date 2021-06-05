@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>UofTExchange</title>
+    <link href="styles/index.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="topBar">
+      <div id="signIn">
+        <a href="/login">
+          <div class="topBarImageContainer">
+            <img
+              class="topBarImage"
+              src="images/index/user.svg"
+              alt="userPlaceholder"
+            />
+          </div>
+          <br />
+          <span class="topBarText">Log in</span>
+        </a>
+      </div>
+
+      <div id="myCart">
+        <a href="/shoppingCart">
+          <div class="topBarImageContainer">
+            <img
+              class="topBarImage"
+              src="images/index/cart.svg"
+              alt="cartLogo"
+            />
+          </div>
+
+          <div id="shoppingCartNumber">
+            <span id="cartNumber">0</span>
+          </div>
+
+          <br />
+          <span class="topBarText">My cart</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="BigLogo">
+      <img src="images/logo.png" id="indexLogo" alt="logo" />
+      <form id="searchForm">
+        <input id="searchBox" type="text" placeholder="Search item...." />
+        <br />
+
+        <button id="searchButton" type="submit">
+          <span id="searchButtonText">Search</span>
+        </button>
+
+        <button id="showMeAllButton" type="submit">
+          <span id="showMeAll">Show All</span>
+        </button>
+      </form>
+    </div>
+
+    <div id="promptText">How to get a deal on BOOK.IT?</div>
+
+    <div id="introduction">
+      <div class="introBlock">
+        <img
+          class="introImage"
+          id="dealImage"
+          src="images/index/price-tag.svg"
+          alt="priceTag"
+        />
+        <br />
+        <span class="introText">Deals</span>
+        <div class="dropDown">Step1: Search for the item you want to buy!</div>
+      </div>
+
+      <div class="introBlock">
+        <img
+          class="introImage"
+          id="chatImage"
+          src="images/index/chat.svg"
+          alt="chat"
+        />
+        <br />
+        <span class="introText">Chatting</span>
+        <div class="dropDown">
+          Step2: Chat with the seller to confirm the item information!
+        </div>
+      </div>
+
+      <div class="introBlock">
+        <img
+          class="introImage"
+          id="cardImage"
+          src="images/index/credit-cards-payment.svg"
+          alt="payment"
+        />
+        <br />
+        <span class="introText">Payment</span>
+        <div class="dropDown">Step3: Choose the way you want to pay!</div>
+      </div>
+
+      <div class="introBlock">
+        <img
+          class="introImage"
+          id="saveImage"
+          src="images/index/piggy-bank.svg"
+          alt="piggy-bank"
+        />
+        <br />
+        <span class="introText">Save</span>
+        <div class="dropDown">
+          Step4: Congratulations! You successfully got yourself a deal and saved
+          money!
+        </div>
+      </div>
+    </div>
+
+    <!--Javascript-->
+    <script type="text/javascript" src="scripts/index.js"></script>
+  </body>
+</html>

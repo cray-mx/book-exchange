@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>User Profile</title>
+    <link href="/styles/chatboxProfile.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/styles/userProfile.css" />
+    <!--icon library-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- <div id="chatRoom">
+    <div id="chatTitle">
+        <h5 id="chatName">user</h5>
+        close button
+        <div id="chatHide">
+            <a href="#">&times;</a>
+        </div>
+    </div>
+
+    <!--messages-->
+    <!-- <div id="chat"> -->
+    <!-- A sample bubble-->
+    -->
+    <!--<div class="chatInBubble">-->
+    <!--<p class="chatInText">Hello</p>-->
+    <!--</div>
+    </div>
+
+    <!--write new message-->
+    <!-- <div id="message">
+        <form>
+            <textarea id="messageBox" placeholder="Message..."></textarea>
+            <button id="sendButton" class="submit"><i class="fa fa-send blue submit"></i></button>
+        </form>
+    </div>
+</div> -->
+
+    <!--Top Bar -->
+    <div id="topNavBar">
+      <a href="/index.html">
+        <img id="topBarLogo" src="/images/logo.png" alt="logo" />
+      </a>
+
+      <ul id="rightNav">
+        <!--Chat Button-->
+
+        <!--Shopping Cart Button-->
+        <li>
+          <a href="/shoppingCart">
+            <div class="topBarImageContainer">
+              <img
+                class="topBarImage"
+                src="/images/index/cart.svg"
+                alt="cartLogo"
+              />
+            </div>
+          </a>
+        </li>
+
+        <!--Log Out Button-->
+        <li>
+          <a href="/api/logout">
+            <div class="topBarImageContainer">
+              <img
+                class="topBarImage"
+                src="/images/admin/logout.png"
+                alt="logOutPlaceholder"
+              />
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div id="content">
+      <div id="profile">
+        <div id="profilePic">
+          <img class="profile-pic" src="/images/profilePic.jpg" alt="" />
+          <br />
+          <br />
+          <span id="pic-form-text"> Change Profile Picture </span>
+          <form
+            id="pic-form"
+            action="/api/changeProfilePicture"
+            method="post"
+            enctype="multipart/form-data"
+          >
+            <input
+              type="file"
+              id="pic-select"
+              class="file-upload"
+              name="image"
+              accept="image/*"
+            />
+            <button id="pic-submit" type="submit" disabled>Upload</button>
+          </form>
+        </div>
+
+        <h3>Firstname Lastname</h3>
+
+        <div id="profileInfo">
+          <div id="bio" class="boxed">
+            <span>
+              Here is my bio description. Lorem ipsum dolor sit amet,
+              consectetur adipiscing elit. Vivamus faucibus quam ante, quis
+              pulvinar lectus rutrum non. Nam nec porttitor quam. Vivamus nec
+              dui commodo arcu placerat ornare. Aenean feugiat mauris in nibh
+              semper semper. Sed faucibus dolor non orci sollicitudin, at
+              vehicula mauris maximus.
+            </span>
+            <br />
+            <i id="editBio" class="fa fa-edit textArea"></i>
+          </div>
+          <div id="userid">
+            <p>Username: <span>userid</span></p>
+          </div>
+          <div id="phone">
+            <p>
+              Phone Number: <span>1234567890</span>
+              <i id="editPhoneNumber" class="fa fa-edit"></i>
+            </p>
+          </div>
+          <div id="email">
+            <p>Email Address: <span>sample@gmail.com</span></p>
+          </div>
+          <br />
+        </div>
+        <strong
+          >My Posts:
+          <button id="postIMade">
+            <p id="myPosts" class="myPosts">Posts I've Made</p>
+          </button>
+        </strong>
+        <br />
+        <strong
+          >My Purchases:
+          <button id="itemsIBought">
+            <p id="myPurchases" class="myPurchases">Items I've Bought</p>
+          </button>
+        </strong>
+      </div>
+    </div>
+
+    <!--Javascript-->
+    <script type="text/javascript" src="/scripts/classes.js"></script>
+    <script type="text/javascript" src="/scripts/userProfile.js"></script>
+    <script type="text/javascript" src="/scripts/chatbox.js"></script>
+  </body>
+</html>

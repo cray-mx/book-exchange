@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--Flavicon-->
+  <link rel="shortcut icon" href="#" type="image/x-icon">
+
+  <!--Bulma-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+
+  <!--My CSS-->
+  <link rel="stylesheet" type="text/css" href="/styles/createAccount.css">
+
+  <!--Title-->
+  <title>Create Account</title>
+</head>
+
+<body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+      <a href="/">
+        <img src="/images/logo.png" class="logo">
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div id="createAccount">
+  <div class="createAccountCard">
+    <div class="card-title">
+      <h1 class="is-size-4">Create Account</h1>
+    </div>
+
+    <div class="content">
+      <form id="createAccountForm" method="post" action="/api/createAccount">
+        <div class="level">
+          <div class="level-left">
+            <input id="firstName" class="fillOut" type="text" name="name" title="First name" placeholder="First name" required autofocus>
+          </div>
+          <div class="level-right">
+            <input id="lastName" class="fillOut" type="text" name="name" title="Last name" placeholder="Last name" required autofocus>
+          </div>
+        </div>
+
+        <div class="level">
+          <input id="username" class="fillOut" type="text" name="name" title="Username" placeholder="Username" required autofocus>
+        </div>
+
+        <div class="level">
+          <input id="email" class="fillOut" type="email" name="email" title="Email" placeholder="Email" required autofocus>
+        </div>
+
+        <div class="level">
+          <div class="level-left">
+            <input id="password" class="fillOut" type="password" name="password" title="Password" placeholder="Password" required>
+          </div>
+          <div class="level-right">
+            <input id="confirm" class="fillOut" type="password" name="password" title="Confirm" placeholder="Confirm" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--Javascript-->
+<script src="/scripts/classes.js" type="text/javascript"></script>
+<script src="/scripts/createAccount.js" type="text/javascript"></script>
+
+</body>
+</html>

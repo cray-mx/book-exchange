@@ -1,0 +1,184 @@
+#chatRoom{
+    position: fixed;
+    bottom: 30px;
+    right: 80px;
+    background-color: white;
+    height: 300px;
+    width: 260px;
+    z-index: 1;
+    display: none;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#chatTitle{
+    display: block;
+    background-color: lightsteelblue;
+    width: 260px;
+    height: 32px;
+    font-weight: bold;
+}
+
+#chatName {
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 2px;
+    font-size: 120%;
+}
+
+#chatHide{
+    display: inline-block;
+    float: right;
+    margin-right: 10px;
+}
+
+#chatHide a{
+    text-decoration: none;
+    display: inline;
+}
+
+#chatShow:hover{
+    cursor: pointer;
+}
+
+#messageBox{
+    display: inline-block;
+    margin-left:5px;
+    width: 210px;
+    max-height: 90px;
+    font-size: 14px;
+    resize: none;
+}
+
+#sendButton{
+    background-color: white;
+    border: none;
+    float: right;
+    margin-right: 5px;
+    position: relative;
+    top: 10px;
+}
+
+.blue{
+    color: #44aaee;
+}
+
+#chat{
+    height: 200px;
+    width: 250px;
+    margin: 5px;
+    overflow: auto;
+}
+
+.chatInBubble {
+    display: inline-block;
+    margin: 5px;
+    min-width: 60px;
+    max-width: 150px;
+    background-color: skyblue;
+    border-radius: 20px;
+    float: left;
+    clear: both;
+}
+
+.chatInText{
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: left;
+}
+
+
+.chatOutBubble {
+    display: block;
+    margin: 5px;
+    min-width: 60px;
+    max-width: 150px;
+    float: right;
+    clear: both;
+    background-color: lightyellow;
+    border-radius: 20px;
+}
+
+.chatOutText{
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: right;
+}
+
+
+/************* drop down list chat ***************/
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    right: 200px;
+    background-color: white;
+    min-width: 170px;
+    z-index: 1;
+}
+
+.dropdownContent a {
+    color: black;
+    padding: 12px;
+    display: block;
+}
+
+.dropdownContent a:hover {
+    text-decoration: none;
+    background-color: floralwhite;
+    display: block;
+}
+
+.dropdown:hover{
+    cursor: pointer;
+}
+/*.dropdown:hover .dropdownContent {*/
+    /*display: block;*/
+/*}*/
+
+.profileIconContainer {
+    height: 50px;
+    width: 50px;
+    margin: 5px;
+    float: left;
+}
+
+.profileIcon {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    float: left;
+}
+
+.profileContent{
+    margin-top: 10px;
+    padding-bottom: 20px;
+}
+
+.profileContent strong{
+    margin-left: 5px;
+}
+
+.profile {
+    border-bottom: 1px solid silver;
+    overflow: auto;
+    padding: 5px;
+}
+
+.grey {
+    color: grey;
+}
+
+#userToChat{
+    display: inline-block;
+    width: 75%;
+    margin: 5px;
+    margin-right: 0;
+}
+
+#chatCreateButton{
+    border: none;
+    background-color: white;
+    color: #44aaee;
+}

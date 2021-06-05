@@ -1,0 +1,183 @@
+#topBar {
+  float: right;
+  position: relative;
+  top: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#signIn {
+  display: inline-block;
+  margin: 0;
+}
+
+.topBarImage {
+  height: 50px;
+  display: inline-block;
+}
+
+.topBarImageContainer {
+  display: inline-block;
+  border-radius: 50%;
+  height: 50px;
+  margin-left: 30px;
+}
+
+.topBarText {
+  font-weight: bold;
+  display: inline-block;
+  right: 20px;
+  margin-right: 1rem;
+  margin-left: 35px;
+}
+
+#myCart {
+  display: inline-block;
+}
+
+#BigLogo {
+  alignment: center;
+  text-align: center;
+  position: relative;
+  top: 200px;
+}
+
+#indexLogo {
+  height: 100px;
+  position: relative;
+  margin-left: 11%;
+}
+
+#searchBox {
+  height: 44px;
+  width: 580px;
+  outline: none;
+  box-shadow: 0px 2px 2px 2px grey;
+  padding: 0.8em;
+  font-size: 1.2em;
+}
+
+#searchButton {
+  height: 30px;
+  width: 150px;
+  margin-left: 30px;
+  margin-top: 20px;
+  position: relative;
+  right: 20px;
+  background-color: lightgrey;
+}
+
+#searchButtonText {
+  font-size: 150%;
+  color: grey;
+}
+
+#showMeAllButton {
+  height: 30px;
+  width: 160px;
+  margin-left: 30px;
+  margin-top: 20px;
+  position: relative;
+  right: 20px;
+
+  background-color: lightgrey;
+}
+
+#showMeAll {
+  font-size: 150%;
+  color: grey;
+}
+
+#showMeAllButton:hover {
+  background-color: white;
+}
+
+#searchButton:hover {
+  background-color: white;
+}
+
+#introduction {
+  float: bottom;
+  position: relative;
+  top: 300px;
+  text-align: center;
+}
+
+.introImage {
+  height: 100px;
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+}
+
+.introBlock {
+  display: inline-block;
+}
+
+#promptText {
+  font-size: 150%;
+  position: relative;
+  top: 280px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.dropDown {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.introBlock:hover .dropDown {
+  display: block;
+  font-weight: bold;
+}
+
+#shoppingCartNumber {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-color: red;
+  position: relative;
+  top: -21px;
+  right: 35px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+#cartNumber {
+  color: white;
+  font-size: 100%;
+  font-weight: bold;
+}
+
+.profileImage {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border-style: solid;
+  position: relative;
+  left: 20px;
+}
+
+.dashboardImage {
+  height: 50px;
+  width: 50px;
+  position: relative;
+  left: 20px;
+}
+
+.logoutImage {
+  height: 50px;
+  width: 50px;
+}
+
+#logoutDiv {
+  display: inline-block;
+}

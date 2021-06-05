@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--Flavicon-->
+  <link rel="shortcut icon" href="#" type="image/x-icon">
+
+  <!--Bulma-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+
+  <!--My CSS-->
+  <link rel="stylesheet" type="text/css" href="/styles/login.css">
+
+  <!--Title-->
+  <title>Sign In</title>
+
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="container">
+    <div class="navbar-brand">
+      <a href="/">
+        <img src="/images/logo.png" width="250px">
+      </a>
+    </div>
+  </div>
+</nav>
+
+
+
+<div id="login">
+  <div class="login-card">
+
+    <div class="card-title">
+      <h1 class="is-size-4">Please Sign In</h1>
+    </div>
+
+    <div class="content">
+
+      <form id="signIn" method="POST" action="/api/login">
+
+        <input id="email" type="text" name="username" title="Username" placeholder="Username" required autofocus>
+        <input id="password" type="password" name="password" title="password" placeholder="Password" required>
+
+        <div class="level options">
+<!--          <div class="checkbox level-left">-->
+<!--            <input type="checkbox" id="checkbox" class="regular-checkbox">-->
+<!--            <label for="checkbox"></label>-->
+<!--            <span>Remember me</span>-->
+<!--          </div>-->
+
+          <a class="btn btn-link level-right" href="/pages/recoverAcc.html">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+
+        <div class="signUp">
+          <a class="btn btn-link level-left" href="/pages/createAccount.html">Sign up</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--Javascript-->
+<script src="/scripts/login.js" type="text/javascript"></script>
+<script src="/scripts/classes.js" type="text/javascript"></script>
+</body>
+</html>

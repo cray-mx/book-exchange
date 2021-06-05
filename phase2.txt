@@ -1,0 +1,275 @@
+IMPORTANT NOTE: We noticed that advertisement filters like ADBlock is likely to
+block the loading of some of the javascript and cause the page to not load
+properly. Please disable ad filters before visit our app.
+
+Link to a deployed instance: team25.herokuapp.com
+
+The app depend on two environmental variables, EMAIL_TOKEN and DATABASE_TOKEN.
+Here are examples of those environmental variables:
+
+export EMAIL_TOKEN="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"
+export DATABASE_TOKEN="mongodb+srv://server:server@cluster0-pyppi.mongodb.net/test?retryWrites=true"
+
+UofTExchange Application Usage:
+
+# Login Credentials (Default User):
+        (1) Standard user: username user, password: user
+	    - A standard user has access to all of the pages, except the admin dashboard page.
+	(2) Admin user: username: admin, password: admin
+	    - The admin can access and organize the information of chat messages, transactions, posts and standard users on the admin dashboard page.
+
+
+# Standard User Features:
+
+    index page:
+           1. Search
+              when click on "Search", the page will jump to a page showing related posts of items (note: there is
+              no action if there is no input in the "search item" input box)
+              when click on "Show All", the new page will showing all posts
+
+           2. Log In / Profile
+              The page will jump to login page if the user has not logged in, or jump to user profile page if
+              the user has not logged in
+
+           3. My cart
+              If user did not log in, the page will jump to login page.
+              Otherwise, the page will jump to the user's shopping cart.
+
+
+    login page:
+            1. Normal login process by putting in the login credentials
+
+	    2. When a user clicks on "Sign Up", the user will jump to the create account page. The user will fill in 
+	       the information needed.
+
+            3. When a user clicks on the "UofTExchange" logo, the page will jump back to the index page
+
+            4. Password Recovery
+               The user can retrieve his/her password by clicking on "Forget password?" and then entering
+               the email he/she used to sign up for this account. If the email entered is valid, a recovery code
+               will be sent to this email and the user can use this recovery code to reset the password.
+
+
+    user profile page:
+            1. Profile:
+               The user is able to change profile picture, bio and phone number
+
+            2. Purchases:
+                The user can view his/her past transactions and the status of each transaction, marked as (1) complete,
+                (2) pending (if the transaction is still under review by Admin), or (3) rejected (if the transaction
+                is denied by the admin).
+
+            3. Posts:
+                The user can view the posts they created by clicking on "Posts I've made". 
+		On "my posts" page, the user can (1) remove his/her posts if the post has not been proceeded to transaction,
+					         (2) edit a post by clicking "edit this post" and jumping to update ad page to edit book information 
+	 	 			         (3) make a new post by clicking on the "Make Post" button on the top right corner.
+						 (4) view the handle payment method of each post
+
+            4. Chat:
+               The user can view his/her chat history by clicking on the chat icon on the top right corner.
+               By clicking on a specific chat history, the user can continue their chat.
+               She/he can also start a new chat by typing in a valid username and clicking the "+" button.
+
+            5. Shopping Cart:
+               The user can view his/her shopping cart by clicking on the shopping cart button on the top right corner.
+
+
+    shopping cart page:
+            1. The user can select the items she/he wants to proceed to checkout by clicking on the checkbox to the left of
+               each post or select all the items by clicking on the "select all" checkbox.
+
+               Note: the user is not able to select the posts whose seller doesn't allow credit card payment.
+               In this case, the user has to contact the seller and figure out the payment themselves.
+
+            2. When a user click on "place order", the user will jump to the payment method page and need to fill in the information for payment. 
+   	       The user can cancel the transaction. If the user choose to continue, a transaction will be created and waiting to be handled by the admin.
+
+            3. Remove from Cart
+               When a user clicks "Remove from Cart" in a certain item in the cart, that item will be removed
+               from the cart.
+
+            4. Contact the Seller
+               When click on "Contact the Seller" for each post, the system will either create a new chat if the user
+               hasn't chat with the seller before or show the past chat histories in the chat box. The user can then
+               chat with the seller.
+
+
+    browse items page:
+            1. Sorting items (View by price/type/post date)
+               User can select how to view the postings among sorting by
+               a) Posting time(New to Old), b) Posting time(Old to New), c) price(High to Low) or d) price(Low to High).
+
+            2. Add to Cart/Remove from Cart
+               When a user clicks "Add to Cart" for a certain post, that item will be added to the user's shopping cart.
+               If the user choose to "Remove from Cart" of an item, the shopping cart will also remove the item.
+               The number of items shown on "My cart" button is updated correspondingly.
+
+            3. Contact the Seller
+               Similar to #4 under shopping cart page.
+
+	    4. Make Post
+	       The user can create a new post on the items page by clicking "Make Post" button. This will take the user to the
+  	       post ad page, where it asks the user to fill in the price and some details of the book (ISBN, edition, condition, etc ...). 
+	       The user can also add up to 4 photos of the book to his/her post. If the user selects "handle payment via the system", our website
+	       will take care of the transaction when a buyer purchases this book. Otherwise, if the user selects "handle payment by myself", then 
+	       the user needs to take care of the transaction offline.
+    
+
+# Admin User Features:
+
+    admin dashboard page:
+            1. The dashboard will show (1) the number of new message created since the admin's last login, (2) the number of transactions to be handled,
+               (3) the number of posts not yet been sold and (4) the number of standard users in total.
+
+            2. Manage Posts
+               When the admin clicks on "edit", the post section will change to edit mode. The admin will be able to
+               delete a post by clicking on the "close" icon. After editing a post, the admin should click on "save",
+               then the post section will be reloaded with existing posts.
+
+               The admin can also click on "View All" to manage posts on the browse items page.
+
+            3. Manage Users
+               When the admin clicks on "show more/show less", more or less users will be displayed on the dashboard.
+               The admin will be able to delete a user by clicking on the corresponding "delete" button, or view a
+               user's profile in detail by clicking on "View Detail".
+
+            4. Manage Transactions
+               The transactions which have not been processed by the admin yet will show up in this section.
+               When the admin clicks on the green check icon, the admin will approve this transaction.
+               But when the admin clicks on the red cross icon, the admin will deny this transaction.
+
+            5. Chat
+               The admin can chat with other users. This function is implemented the same for the admin as for
+               our standard users.
+
+
+==========================================================================================================================
+
+Overview of routes:
+
+In app.js file, it contains all the routes that we used for our application. They can be divided into the following categories: 1) User Management & Information Retrieval, 2) Post Management & Information Retrieval, 3) Transaction Management & Information Retrieval, and 4) Chat Management & Information Retrieval.
+
+Note: All the pages are sent to the browser and then the init() function in the javascript will fetch
+      information from the server to generate the page accordingly.
+
+
+1. User Management & Information Retrieval:
+
+    1.0 user creation and general methods
+        /api/createAccount: used to create an new User
+
+        /api/sendCode/:email: send an recovery code to the email, this will be used
+        to recovery password of an user in case users forget their password
+
+        /api/recover: input the recovery code to set a new password
+
+        /api/isLogin: return whether the user is logged in, if so, send back the user
+
+        /api/logout: destroy the session and logout the user
+
+        /api/userProfile: redirect to the userProfile page
+
+
+    1.1 retrieve info from User collection:
+        /api/user/:username: used to retrieve the information of the user with username
+
+        /api/getCurrentUser: used to retrieve the user that is currently logged in
+
+        /api/findSeller/:postId: used to retrieve the seller of a post with postId
+
+        /api/myPurchases: retrieve all the purchases of the user
+
+        /api/myposts: retrieve all the post this user has made
+
+
+        Admin only methods:
+            /api/admin/userPurchases/:username: Retrieve the purchases record of the user with username
+
+            /api/admin/userPosts/:username: retrieve the posts of the user with username
+
+            /api/dashboard/users: retrieve non-admin users for admin dashboard
+
+
+    1.2 update info of User collection:
+        /api/changeProfilePicture: update the profile photo of an user
+
+        /api/updatePhoneNumber: update the phone number of an user
+
+        /api/updateBio/:newBio: update the bio of an user
+
+        /api/addToCart/:postId: update the shopping cart of the user current logged in by adding post with postId
+
+        /api/removeFromCart/:postId: remove the post with postId from the shopping cart of the user currently logged in
+
+
+    1.3 delete info of User collection:
+        /api/dashboard/user/:user: delete user from database, only Admin can invoke this operation
+
+
+2) Post Management & Information Retrieval
+
+    2.0 post creation:
+        /api/postAd: post a new post
+
+    2.1 post information retrieval:
+
+        /api/search: This route is for browsing item. It expects "keyword", "option" (title/description or ISBN)
+                      and "all" element (whether to show all the post on the website) in the request body,
+                      and sends back the search result for "keyword" and the current user logged in.
+
+        /api/dashboard/posts: find all the posts for admin dashboard
+
+    2.2 post update:
+        /api/updateAd: update the info of an existing post
+
+
+    2.3 post deletion:
+        /api/dashboard/post/:postId: delete the post with postId, only Admin can invoke this operation
+
+
+3) Transaction Management & Information Retrieval
+
+    3.0 transaction creation:
+        /api/checkout: to checkout from shopping cart and create unsubmitted transactions.
+
+        /api/sellItem: to create transactions in db for transactions handled by users themselves,
+                        when a post is associated with a buyer and marked as sold.
+
+
+    3.1 transaction status update:
+        /api/submitPayment: this route is to submit the payment to the server, and set payment info and the isSubmitted
+                            field for transaction
+
+        /api/dashboard/transaction: this route is for admin to approve or deny a pending transaction, and set the
+                                    the transaction as isCompleted
+
+
+    3.2 transaction info retrieval:
+        /api/myPurchases: to get the transactions whose buyer is a user
+
+        /api/dashboard/transactions: to get all submitted but incomplete transactions for the transaction section
+                                     of the admin dashboard
+
+        /api/admin/userPurchases/:username: to get the purchases of a user when the user's profile is viewed by admin
+
+
+4) Chat Management & Information Retrieval:
+
+    4.0 chat creation:
+        /api/createChat: create a new chat between the user currently logged in and the user specified in request
+
+    4.1 chat information retrieval:
+        /api/startChat/:user: find the chat between the user currently logged in and the user specified in request
+
+        /api/allChats: find all chat histories of the currently logged in
+
+        /api/chat/:chatId: get a chat by id
+
+    4.2 chat update:
+        /api/chat/:chatId: add a new message in req.body to the chat with id being chatId
+        /api/loadChat/:chatId: set the unread message array to empty array after messages has been loaded
+
+
+
+

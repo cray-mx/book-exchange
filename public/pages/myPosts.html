@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Posts</title>
+
+    <link href="/styles/myPosts.css" type="text/css" rel="stylesheet" />
+    <!--Lightbox CSS-->
+    <link href="/lightbox/css/lightbox.css" rel="stylesheet" />
+    <!--jquery for lightbox-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--icon library-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div id="topBar">
+      <a href="/">
+        <img id="topBarLogo" src="/images/logo.png" alt="logo" />
+      </a>
+
+      <div id="topBarIcons">
+        <button id="makePostButton">Make Post</button>
+
+        <!--This is used to hold the user icon after login-->
+        <div id="signIn">
+          <a href="ml">
+            <div class="topBarImageContainer">
+              <img
+                class="topBarImage"
+                src="/images/index/user.svg"
+                alt="userPlaceholder"
+              />
+            </div>
+          </a>
+        </div>
+
+        <div id="myCart">
+          <a href="shoppingCart.html">
+            <div class="topBarImageContainer">
+              <img
+                class="topBarImage"
+                src="/images/index/cart.svg"
+                alt="cartLogo"
+              />
+            </div>
+            <div id="shoppingCartNumber">
+              <span id="cartNumber">0</span>
+            </div>
+          </a>
+        </div>
+
+        <div id="logOut">
+          <a href="/api/logout">
+            <div class="topBarImageContainer">
+              <img
+                class="topBarImage"
+                src="/images/admin/logout.png"
+                alt="logOutPlaceholder"
+              />
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div id="resultPage">
+      <div id="searchResult">Following is your posts ...</div>
+      <select id="sortingOption">
+        <option value="timeNewToOld">
+          Sorting by Posting time(New to Old)
+        </option>
+        <option value="timeOldToNew">
+          Sorting by Posting time(Old to New)
+        </option>
+        <option value="priceHighToLow">Sorting by price(High to Low)</option>
+        <option value="priceLowToHigh">Sorting by price(Low to High)</option>
+      </select>
+      <div id="posts">
+        <div class="post">
+          <img
+            class="profilePhoto"
+            src="/images/items/seller1.jpg"
+            alt="sellerPhoto"
+          />
+          <span class="userName"> Donald Trump </span>
+          <br />
+          <span class="category"> Category: Books </span>
+          <span class="condition"> Condition: New </span>
+          <div class="price">Rs 19.99</div>
+          <div class="description">
+            I want to sell a textbook for MAT224. Please contact me if you want
+            more information!
+          </div>
+          <hr />
+          <button class="soldItem">Mark as Sold</button>
+          <button class="deleteItem">Delete this Post</button>
+        </div>
+        <div class="post">
+          <img
+            class="profilePhoto"
+            src="/images/items/seller2.jpeg"
+            alt="sellerPhoto"
+          />
+          <span class="userName"> Mike Penth </span>
+          <br />
+          <span class="category"> Category: Books </span>
+          <span class="condition"> Condition: New </span>
+          <div class="price">Rs 29.99</div>
+          <div class="description">
+            I want to sell a textbook for MAT223. Please contact me if you want
+            more information!
+          </div>
+          <div class="pictureContainer">
+            <a href="/images/items/sampleBook1.jpg" data-lightbox="sampleBook1">
+              <img
+                class="itemPicture"
+                src="/images/items/sampleBook1.jpg"
+                alt="picture"
+              />
+            </a>
+          </div>
+          <hr />
+          <button class="soldItem">Mark as Sold</button>
+          <button class="deleteItem">Delete this Post</button>
+        </div>
+      </div>
+    </div>
+    <!--Script for lightbox-->
+    <script src="/lightbox/js/lightbox.js"></script>
+    <script type="text/javascript" src="/scripts/classes.js"></script>
+    <script src="/scripts/myPosts.js" type="text/javascript"></script>
+  </body>
+</html>

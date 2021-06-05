@@ -1,0 +1,23 @@
+---- Connect to DB with Compass/Robo 3T ----
+Address:
+cluster0-shard-00-00-pyppi.mongodb.net
+Port:
+27017
+
+Username: server
+Password: server
+
+And enable the SSL using self-signed certificate
+
+
+
+
+
+
+----- Run App -----
+npm i
+nodemon $NODE_DEBUG_OPTION app.js
+
+
+browser:
+localhost:3000

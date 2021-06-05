@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"/>
+    <link href="/styles/updateAd.css" rel="stylesheet" type="text/css"/>
+
+    <title>Post-Ad</title>
+</head>
+
+<body>
+<picture>
+    <source srcset="/images/logo.png" media="(min-width: 400px)"/>
+    <a href="/index.html">
+        <img id="logo" src="/images/logo.png" alt="UofT Exchange"/>
+    </a>
+</picture>
+
+<h2 id="h1Title">Post Ad</h2>
+<!-- action="/my-handling-form-page" to go in form -->
+<form id="postAdForm" action="/api/updateAd" method="post" enctype="multipart/form-data">
+    <input type="text" name="postId" id="postId" required>
+    <section>
+        <h3>Ad Details</h3>
+        <hr>
+        <p>
+            <label for="adTitle">
+                <span>Ad Title: </span>
+            </label>
+            <input class="wideInput" type="text" id="adTitle" name="title" required/>
+        </p>
+        <p>
+            <label for="isbn">
+                <span>ISBN: </span>
+            </label>
+            <input class="wideInput" type="number" id="isbn" name="ISBN" required/>
+        </p>
+        <p>
+            <label for="edition">
+                <span>Edition: </span>
+            </label>
+            <input type="number" id="edition" name="edition" required/>
+        </p>
+        <p>
+            <label for="condition">
+                <span>Condition: </span>
+            </label>
+            <select name="condition" id="condition">
+                <option value="New">New</option>
+                <option value="Like New">Like New</option>
+                <option value="Very Good">Very Good</option>
+                <option value="Good">Good</option>
+                <option value="Acceptable">Acceptable</option>
+            </select>
+        </p>
+        <p>
+            <label for="description">
+                <span>Description: </span>
+            </label>
+            <textarea class="wideInput" id="description" name="description" required></textarea>
+        </p>
+    </section>
+
+    <section>
+        <h3>Photos</h3>
+        <hr>
+        <div>
+            <p>
+                Upload images to help sell your ad!
+            </p>
+        </div>
+
+        <label>Photos:</label>
+        <input type="file" name="image" accept="image/png, image/jpeg"/>
+        <img class="photos" id="photo1"/>
+
+        <label></label>
+        <input type="file" name="image" accept="image/png, image/jpeg"/>
+        <img class="photos" id="photo2"/>
+
+        <label></label>
+        <input type="file" name="image" accept="image/png, image/jpeg"/>
+        <img class="photos" id="photo3"/>
+
+        <label></label>
+        <input type="file" name="image" accept="image/png, image/jpeg"/>
+        <img class="photos" id="photo4"/>
+    </section>
+
+    <section>
+        <h3>Price</h3>
+        <hr>
+        <label for="adTitle">
+            <span>Price: $</span>
+        </label>
+        <input type="number" id="price" name="price" placeholder="10.00"/>
+    </section>
+
+    <section id="radioSection">
+        <div>
+            <label class="checkLabel" for="freeCheck">
+                <span>Free</span>
+            </label>
+            <input type="checkbox" id="freeCheck" name="isFree" value="Free" checked/>
+        </div>
+
+    </section>
+
+    <section>
+        <div>
+            Handle Payment:
+            <input type="checkbox" id="handleViaSystem" name="handleViaSystem" checked/>
+            <label class="handleViaSystem" for="handleViaSystem">
+                <span>via the System</span>
+            </label>
+            <br>
+            <input type="checkbox" id="handleBySelf" name="handleBySelf"/>
+            <label class="handleBySelf" for="handleBySelf">
+                <span>by Myself</span>
+            </label>
+        </div>
+    </section>
+
+    <section id="postAdButtonSection">
+        <input id="submit" class="button -sun center" type="submit" value="Update">
+        <input id="cancel" class="button -sun center" type="submit" value="cancel">
+    </section>
+</form>
+
+<!--Javascript-->
+<script src="/scripts/updateAd.js" type="text/javascript"></script>
+
+</body>
+</html>
