@@ -4,11 +4,11 @@ const express = require('express');
 const port = process.env.PORT || 3000;
 const session = require('express-session');
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.EMAIL_TOKEN);
+sgMail.setApiKey("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");
 const fs = require('fs');
 const mongoose = require('./db/mongoose').mongoose;
 const multer = require("multer");
-const upload = multer({dest: "public/uploads/"});
+const upload = multer({ dest: "public/uploads/" });
 
 const Post = require("./models/Post").Post;
 const User = require("./models/User").User;
@@ -19,7 +19,7 @@ const Recovery = require("./models/Recovery").Recovery;
 const app = express();
 const ObjectID = require("mongodb").ObjectID;
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 // Static directories
 app.use("/", express.static(__dirname + '/public'));
@@ -67,13 +67,13 @@ app.post('/api/search', (req, res) => {
     const option = parseInt(req.body.option);
     const all = req.body.all;
     if (all === "true") {
-        Post.find({isSold: false}).then((posts) => {
-            const payload = {result: posts};
+        Post.find({ isSold: false }).then((posts) => {
+            const payload = { result: posts };
             if (!req.session.user) {
                 payload.user = null;
                 res.send(payload);
             } else {
-                User.findOne({username: req.session.user}).then((result) => {
+                User.findOne({ username: req.session.user }).then((result) => {
                     payload.user = result;
                     res.send(payload);
                 });
@@ -84,14 +84,14 @@ app.post('/api/search', (req, res) => {
         if (option === 0) {
             Post.find({
                 isSold: false,
-                $or: [{title: {$regex: keywordRegex, $options: 'i'}}, {description: {$regex: keywordRegex, $options: 'i'}}]
+                $or: [{ title: { $regex: keywordRegex, $options: 'i' } }, { description: { $regex: keywordRegex, $options: 'i' } }]
             }).then((result) => {
-                const payload = {result: result};
+                const payload = { result: result };
                 if (!req.session.user) {
                     payload.user = null;
                     res.send(payload);
                 } else {
-                    User.findOne({username: req.session.user}).then((result) => {
+                    User.findOne({ username: req.session.user }).then((result) => {
                         payload.user = result;
                         res.send(payload);
                     });
@@ -101,13 +101,13 @@ app.post('/api/search', (req, res) => {
                 res.status(500).send();
             });
         } else {
-            Post.find({isSold: false, ISBN: keyword.trim()}).then((result) => {
-                const payload = {result: result};
+            Post.find({ isSold: false, ISBN: keyword.trim() }).then((result) => {
+                const payload = { result: result };
                 if (!req.session.user) {
                     payload.user = null;
                     res.send(payload);
                 } else {
-                    User.findOne({username: req.session.user}).then((result) => {
+                    User.findOne({ username: req.session.user }).then((result) => {
                         payload.user = result;
                         res.send(payload);
                     });
@@ -123,7 +123,7 @@ app.post('/api/search', (req, res) => {
 app.post('/api/createAccount', (req, res) => {
     const username = req.body.username.trim();
     const email = req.body.email.trim();
-    User.findOne({$or: [{username: username}, {email: email}]}).then((result) => {
+    User.findOne({ $or: [{ username: username }, { email: email }] }).then((result) => {
         if (result !== null) {
             if (result.username === username) {
                 // 600 to indicate username exist
@@ -176,7 +176,7 @@ app.post('/api/postAd', upload.array("image", 4), (req, res) => {
         price = req.body.price;
     }
     let byCreditCard;
-    User.findOne({username: req.session.user}).then((result) => {
+    User.findOne({ username: req.session.user }).then((result) => {
         byCreditCard = (req.body.handleBySelf !== 'on');
         const newPost = new Post({
             title: req.body.title,
@@ -233,7 +233,7 @@ app.post('/api/updateAd', upload.array("image", 4), (req, res) => {
         for (let i = 0; i < files.length; i++) {
             result.image.push(files[i].path);
         }
-        User.find({"shortlist._id": req.body.postId}).then((users) => {
+        User.find({ "shortlist._id": req.body.postId }).then((users) => {
             for (let i = 0; i < users.length; i++) {
                 users[i].shortlist.pull(req.body.postId);
                 users[i].shortlist.push(result);
@@ -275,14 +275,14 @@ app.post("/api/addToCart/:postId", (req, res) => {
         if (!ObjectID.isValid(req.params.postId)) {
             res.status(600).send();
         }
-        User.findOne({username: req.session.user}).then((user) => {
+        User.findOne({ username: req.session.user }).then((user) => {
             if (!user) {
                 res.status(404).send();
             }
             if (user.shortlist.filter((post) => {
                 return post._id.equals(req.params.postId);
             }).length !== 0) {
-                res.send({user});
+                res.send({ user });
                 return;
             }
             Post.findById(req.params.postId).then((post) => {
@@ -295,7 +295,7 @@ app.post("/api/addToCart/:postId", (req, res) => {
                 }
                 user.shortlist.push(post);
                 user.save().then((user) => {
-                    res.send({user});
+                    res.send({ user });
                 }).catch((error) => {
                     console.log(error);
                     res.status(500).send();
@@ -315,7 +315,7 @@ app.delete("/api/removeFromCart/:postId", (req, res) => {
         if (!ObjectID.isValid(req.params.postId)) {
             res.status(600).send();
         }
-        User.findOne({username: req.session.user}).then((user) => {
+        User.findOne({ username: req.session.user }).then((user) => {
             if (!user) {
                 res.status(404).send();
             }
@@ -323,13 +323,13 @@ app.delete("/api/removeFromCart/:postId", (req, res) => {
                 return !post._id.equals(req.params.postId);
             });
             if (temp.length === user.shortlist.length) {
-                res.send({newUser: user});
+                res.send({ newUser: user });
                 return;
             } else {
                 user.shortlist = temp;
             }
             user.save().then((newUser) => {
-                res.send({newUser});
+                res.send({ newUser });
             }).catch((error) => {
                 console.log(error);
                 res.status(500).send();
@@ -342,7 +342,7 @@ app.delete("/api/removeFromCart/:postId", (req, res) => {
 });
 
 app.get('/api/user/:username', (req, res) => {
-    User.findOne({username: req.params.username}).then((user) => {
+    User.findOne({ username: req.params.username }).then((user) => {
         if (!user) {
             res.status(404).send();
         } else {
@@ -359,7 +359,7 @@ app.get('/api/user/:username', (req, res) => {
 // Middleware for authentication for resources
 const authenticate = (req, res, next) => {
     if (req.session.user) {
-        User.findOne({username: req.session.user}).then((user) => {
+        User.findOne({ username: req.session.user }).then((user) => {
             if (!user) {
                 return Promise.reject()
             } else {
@@ -375,7 +375,7 @@ const authenticate = (req, res, next) => {
 };
 
 app.get('/api/getUser/:username', authenticate, (req, res) => {
-    User.findOne({username: req.params.username}).then((user) => {
+    User.findOne({ username: req.params.username }).then((user) => {
         if (!user) {
             res.status(404).send();
         } else {
@@ -388,7 +388,7 @@ app.get('/api/getUser/:username', authenticate, (req, res) => {
 });
 
 app.get('/api/getUserUnsafe/:username', (req, res) => {
-    User.findOne({username: req.params.username}).then((user) => {
+    User.findOne({ username: req.params.username }).then((user) => {
         if (!user) {
             res.status(404).send();
         } else {
@@ -408,9 +408,9 @@ app.post('/api/createChat', authenticate, (req, res) => {
     if (user1 === user2) {
         res.status(404).send();
     }
-    Chat.findOne({$or: [{user1: user1, user2: user2}, {user1: user2, user2: user1}]}).then((chat) => {
+    Chat.findOne({ $or: [{ user1: user1, user2: user2 }, { user1: user2, user2: user1 }] }).then((chat) => {
         if (chat !== null) {
-            res.send({user: user1, chat: chat});
+            res.send({ user: user1, chat: chat });
         } else {
             const newChat = new Chat({
                 user1: user1,
@@ -424,7 +424,7 @@ app.post('/api/createChat', authenticate, (req, res) => {
                 if (!result) {
                     res.status(404).send();
                 } else {
-                    res.send({user: user1, chat: result});
+                    res.send({ user: user1, chat: result });
                 }
             }).catch((error) => {
                 res.status(500).send()
@@ -441,11 +441,11 @@ app.get('/api/startChat/:user', authenticate, (req, res) => {
     const user2 = req.params.user;
     const user1 = req.user.username;
 
-    Chat.findOne({$or: [{user1: user1, user2: user2}, {user1: user2, user2: user1}]}).then((chat) => {
+    Chat.findOne({ $or: [{ user1: user1, user2: user2 }, { user1: user2, user2: user1 }] }).then((chat) => {
         if (!chat) {
             res.status(404).send();
         } else {
-            res.send({user: user1, chat: chat});
+            res.send({ user: user1, chat: chat });
         }
     }).catch((error) => {
         console.log(error);
@@ -457,7 +457,7 @@ app.get('/api/startChat/:user', authenticate, (req, res) => {
 // find all chat histories belonging to a user
 app.get('/api/allChats', authenticate, (req, res) => {
     const username = req.user.username;
-    Chat.find({$or: [{user1: username}, {user2: username}]}).then((chats) => {
+    Chat.find({ $or: [{ user1: username }, { user2: username }] }).then((chats) => {
         if (!chats) {
             res.status(404).send();
         } else {
@@ -468,14 +468,14 @@ app.get('/api/allChats', authenticate, (req, res) => {
                     return chat.user1;
                 }
             });
-            User.find({username: {$in: usersToFind}}).then((users) => {
+            User.find({ username: { $in: usersToFind } }).then((users) => {
                 if (!users) {
                     res.status(404).send();
                 } else {
                     const avatars = users.map((user) => {
                         return user.avatar
                     });
-                    res.send({user: username, avatars: avatars, chats: chats});
+                    res.send({ user: username, avatars: avatars, chats: chats });
                 }
             });
         }
@@ -537,7 +537,7 @@ app.get('/api/chat/:chatId', authenticate, (req, res) => {
             res.status(404).send();
         } else {
             if (username === chat.user1 || username === chat.user2) {
-                res.send({user: username, chat: chat});
+                res.send({ user: username, chat: chat });
             } else {
                 res.status(401).send();
             }
@@ -582,7 +582,7 @@ app.post('/api/changeProfilePicture', upload.single("image"), (req, res) => {
     if (!req.session.user) {
         res.status(401).send();
     }
-    User.findOne({username: req.session.user}).then((user) => {
+    User.findOne({ username: req.session.user }).then((user) => {
         user.avatar = "/" + req.file.path;
         user.save().then((newUser) => {
             res.redirect("/pages/userProfile.html");
@@ -594,8 +594,8 @@ app.get("/api/getCurrentUser", (req, res) => {
     if (!req.session.user) {
         res.status(401).send();
     } else {
-        User.findOne({username: req.session.user}).then((user) => {
-            res.send({user: user});
+        User.findOne({ username: req.session.user }).then((user) => {
+            res.send({ user: user });
         })
     }
 });
@@ -616,7 +616,7 @@ app.get("/api/findSeller/:postId", (req, res) => {
             res.status(404).send();
         } else {
             if (post.seller !== req.session.user) {
-                res.send({username: post.seller});
+                res.send({ username: post.seller });
             } else {
                 res.status(605).send();
             }
@@ -636,7 +636,7 @@ app.post("/api/updatePhoneNumber/:newNumber", (req, res) => {
         res.status(600).send();
         return;
     }
-    User.findOne({username: req.session.user}).then((user) => {
+    User.findOne({ username: req.session.user }).then((user) => {
         user.phone = newNumber;
         user.save().then((newUser) => {
             res.redirect("/pages/userProfile.html");
@@ -652,7 +652,7 @@ app.post("/api/updateBio/:newBio", (req, res) => {
     if (!req.session.user) {
         res.status(401).send();
     }
-    User.findOne({username: req.session.user}).then((user) => {
+    User.findOne({ username: req.session.user }).then((user) => {
         user.bio = newBio;
         user.save().then((newUser) => {
             res.redirect("/pages/userProfile.html");
@@ -665,7 +665,7 @@ app.post("/api/updateBio/:newBio", (req, res) => {
 
 app.post("/api/sendCode/:email", (req, res) => {
     const email = req.params.email;
-    User.findOne({email: email}).then((user) => {
+    User.findOne({ email: email }).then((user) => {
         if (!user) {
             res.status(404).send();
             return;
@@ -681,7 +681,7 @@ app.post("/api/sendCode/:email", (req, res) => {
             text: "Your recovery code is " + code
         };
 
-        Recovery.findOne({email: email}).then((result) => {
+        Recovery.findOne({ email: email }).then((result) => {
             if (result) {
                 result.code = code;
                 result.save().then((newUser) => {
@@ -717,7 +717,7 @@ app.post("/api/sendCode/:email", (req, res) => {
 // Middleware for authentication for resources
 const adminAuthenticate = (req, res, next) => {
     if (req.session.user) {
-        User.findOne({username: req.session.user}).then((user) => {
+        User.findOne({ username: req.session.user }).then((user) => {
             if (!user) {
                 return Promise.reject()
             } else {
@@ -738,7 +738,7 @@ const adminAuthenticate = (req, res, next) => {
 
 
 app.get("/api/dashboard/posts", adminAuthenticate, (req, res) => {
-    Post.find({isSold: false}).then((posts) => {
+    Post.find({ isSold: false }).then((posts) => {
         if (!posts) {
             res.status(404).send();
         } else {
@@ -750,11 +750,11 @@ app.get("/api/dashboard/posts", adminAuthenticate, (req, res) => {
 });
 
 app.get("/api/dashboard/transactions", adminAuthenticate, (req, res) => {
-    Transaction.find({isComplete: false, isSubmitted: true}).then((transactions) => {
+    Transaction.find({ isComplete: false, isSubmitted: true }).then((transactions) => {
         if (!transactions) {
             res.status(404).send();
         } else {
-            res.send({transactions: transactions});
+            res.send({ transactions: transactions });
         }
     }).catch((error) => {
         res.status(500).send();
@@ -774,7 +774,7 @@ app.delete("/api/dashboard/post/:postId", adminAuthenticate, (req, res) => {
         } else {
             res.send(post);
         }
-        User.find({"shortlist._id": post._id}).then((users) => {
+        User.find({ "shortlist._id": post._id }).then((users) => {
             for (let i = 0; i < users.length; i++) {
                 users[i].shortlist.pull(post._id);
                 users[i].save().catch((error) => {
@@ -812,7 +812,7 @@ app.delete("/api/deletePost/:postId", (req, res) => {
                     res.status(200).send();
                 }
             });
-            User.find({"shortlist._id": post._id}).then((users) => {
+            User.find({ "shortlist._id": post._id }).then((users) => {
                 for (let i = 0; i < users.length; i++) {
                     users[i].shortlist.pull(post._id);
                     users[i].save().catch((error) => {
@@ -827,7 +827,7 @@ app.delete("/api/deletePost/:postId", (req, res) => {
 });
 
 app.get("/api/dashboard/users", adminAuthenticate, (req, res) => {
-    User.find({isAdmin: false}).then((users) => {
+    User.find({ isAdmin: false }).then((users) => {
         if (!users) {
             res.status(404).send();
         } else {
@@ -840,7 +840,7 @@ app.get("/api/dashboard/users", adminAuthenticate, (req, res) => {
 
 app.delete("/api/dashboard/user/:user", adminAuthenticate, (req, res) => {
     const username = req.params.user;
-    User.findOneAndDelete({username: username}).then((user) => {
+    User.findOneAndDelete({ username: username }).then((user) => {
         if (!user) {
             res.status(404).send();
         } else {
@@ -851,10 +851,10 @@ app.delete("/api/dashboard/user/:user", adminAuthenticate, (req, res) => {
                     if (!users) {
                         res.status(404).send();
                     } else {
-                        Post.deleteMany({seller: username}).then((result) => {
-                            User.find({"shortlist.seller": username}).then((users) => {
+                        Post.deleteMany({ seller: username }).then((result) => {
+                            User.find({ "shortlist.seller": username }).then((users) => {
                                 for (let i = 0; i < users.length; i++) {
-                                    users[i].shortlist = users[i].shortlist.filter((post) => {return post.seller !== username});
+                                    users[i].shortlist = users[i].shortlist.filter((post) => { return post.seller !== username });
                                     users[i].save().then((newUser) => {
                                         return;
                                     }).catch((error) => {
@@ -864,7 +864,7 @@ app.delete("/api/dashboard/user/:user", adminAuthenticate, (req, res) => {
                             });
                             res.status(200).send();
                         });
-                        res.send({userNum: users.length});
+                        res.send({ userNum: users.length });
                     }
                 })
             }
@@ -879,7 +879,7 @@ app.post("/api/dashboard/transaction", adminAuthenticate, (req, res) => {
     const approve = req.body.approve;
 
     if (approve) {
-        Transaction.findByIdAndUpdate(transactionId, {$set: {isComplete: true}}).then((transaction) => {
+        Transaction.findByIdAndUpdate(transactionId, { $set: { isComplete: true } }).then((transaction) => {
             if (!transaction) {
                 res.status(404).send();
             } else {
@@ -889,11 +889,11 @@ app.post("/api/dashboard/transaction", adminAuthenticate, (req, res) => {
             res.status(500).send();
         })
     } else {
-        Transaction.findByIdAndUpdate(transactionId, {$set: {isFailure: true}}).then((transaction) => {
+        Transaction.findByIdAndUpdate(transactionId, { $set: { isFailure: true } }).then((transaction) => {
             if (!transaction) {
                 res.status(404).send();
-            }  else {
-                Post.findByIdAndUpdate(transaction.postId, {$set: {isSold: false}}).then((post) => {
+            } else {
+                Post.findByIdAndUpdate(transaction.postId, { $set: { isSold: false } }).then((post) => {
                     if (!post) {
                         res.status(606).send();
                     } else {
@@ -917,14 +917,14 @@ app.post("/api/recover", (req, res) => {
     const code = req.body.code;
     const email = req.session.recoverEmail;
     const password = req.body.password;
-    Recovery.findOne({email: email}).then((entry) => {
+    Recovery.findOne({ email: email }).then((entry) => {
         if (!entry) {
             res.status(401).send();
         } else {
             if (entry.code !== code) {
                 res.status(401).send();
             } else {
-                User.findOne({email: email}).then((user) => {
+                User.findOne({ email: email }).then((user) => {
                     user.password = password;
                     user.save().then((newUser) => {
                         req.session.destroy((error) => {
@@ -973,8 +973,8 @@ app.get("/api/isLogin", (req, res) => {
     if (!req.session.user) {
         res.status(401).send();
     } else {
-        User.findOne({username: req.session.user}).then((user) => {
-            res.send({user: user});
+        User.findOne({ username: req.session.user }).then((user) => {
+            res.send({ user: user });
         }).catch((error) => {
             console.log(error);
             res.status(500).send();
@@ -988,13 +988,13 @@ app.get("/api/myPurchases", (req, res) => {
         return;
     }
     const username = req.session.user;
-    Transaction.find({buyer: username, isSubmitted: true}).then((transactions) => {
+    Transaction.find({ buyer: username, isSubmitted: true }).then((transactions) => {
         const transactionIds = transactions.map((trans) => {
             return trans.postId
         });
-        Post.find({_id: {$in: transactionIds}}).then((posts) => {
-            User.findOne({username: username}).then((user) => {
-                res.send({posts: posts, user: user, transactions: transactions});
+        Post.find({ _id: { $in: transactionIds } }).then((posts) => {
+            User.findOne({ username: username }).then((user) => {
+                res.send({ posts: posts, user: user, transactions: transactions });
             });
         });
     }).catch((error) => {
@@ -1005,13 +1005,13 @@ app.get("/api/myPurchases", (req, res) => {
 
 app.get("/api/admin/userPurchases/:username", adminAuthenticate, (req, res) => {
     const username = req.params.username;
-    Transaction.find({buyer: username}).then((transactions) => {
+    Transaction.find({ buyer: username }).then((transactions) => {
         const transactionIds = transactions.map((trans) => {
             return trans.postId;
         });
-        Post.find({_id: {$in: transactionIds}}).then((posts) => {
-            User.findOne({username: username}).then((user) => {
-                res.send({posts: posts, user: user, transactions: transactions});
+        Post.find({ _id: { $in: transactionIds } }).then((posts) => {
+            User.findOne({ username: username }).then((user) => {
+                res.send({ posts: posts, user: user, transactions: transactions });
             });
         });
     }).catch((error) => {
@@ -1026,18 +1026,18 @@ app.get("/api/myPosts", (req, res) => {
         return;
     }
     const username = req.session.user;
-    Post.find({seller: username}).then((posts) => {
-        User.findOne({username: username}).then((user) => {
-            res.send({posts: posts, user: user});
+    Post.find({ seller: username }).then((posts) => {
+        User.findOne({ username: username }).then((user) => {
+            res.send({ posts: posts, user: user });
         });
     });
 });
 
 app.get("/api/admin/userPosts/:username", adminAuthenticate, (req, res) => {
     const username = req.params.username;
-    Post.find({seller: username}).then((posts) => {
-        User.findOne({username: username}).then((user) => {
-            res.send({posts: posts, user: user});
+    Post.find({ seller: username }).then((posts) => {
+        User.findOne({ username: username }).then((user) => {
+            res.send({ posts: posts, user: user });
         });
     });
 });
@@ -1062,7 +1062,7 @@ app.post("/api/sellItem", (req, res) => {
         if (post.isSold) {
             res.status(400).send()
         }
-        User.find({username: buyer}).then((user) => {
+        User.find({ username: buyer }).then((user) => {
             if (!user) {
                 res.status(607).send();
                 return;
@@ -1083,7 +1083,7 @@ app.post("/api/sellItem", (req, res) => {
             });
             transaction.save().then((trans) => {
                 post.save().then((newPost) => {
-                    User.find({"shortlist._id": post._id}).then((users) => {
+                    User.find({ "shortlist._id": post._id }).then((users) => {
                         for (let i = 0; i < users.length; i++) {
                             users[i].shortlist.pull(post._id);
                             users[i].save().then((newUser) => {
@@ -1145,16 +1145,16 @@ app.post("/api/submitPayment", (req, res) => {
     const checkoutItems = req.body.items;
     const creditCardNumber = req.body.creditCardNumber;
     //The index of items to be removed from user shorlist
-    User.findOne({username: req.session.user}).then((user) => {
+    User.findOne({ username: req.session.user }).then((user) => {
         for (let i = 0; i < checkoutItems.length; i++) {
             user.shortlist.pull(checkoutItems[i]);
-            Transaction.findOne({postId: checkoutItems[i]._id}).then((trans) => {
+            Transaction.findOne({ postId: checkoutItems[i]._id }).then((trans) => {
                 trans.isSubmitted = true;
                 trans.creditCardNumber = creditCardNumber;
                 trans.save().then((newTrans) => {
                     const postId = trans.postId;
-                    Post.findByIdAndUpdate(postId, {$set: {isSold: true}}).then((post) => {
-                        User.find({"shortlist._id": post._id}).then((users) => {
+                    Post.findByIdAndUpdate(postId, { $set: { isSold: true } }).then((post) => {
+                        User.find({ "shortlist._id": post._id }).then((users) => {
                             for (let i = 0; i < users.length; i++) {
                                 users[i].shortlist.pull(post._id);
                                 users[i].save().then((newUser) => {
@@ -1183,6 +1183,15 @@ app.post("/api/submitPayment", (req, res) => {
     });
 
 });
+
+
+const sayHello = () => {
+    return 'hello';
+};
+
+module.exports = {
+    sayHello
+};
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}...`);

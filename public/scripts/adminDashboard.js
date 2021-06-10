@@ -302,12 +302,12 @@ function createPost(post) {
 function viewAllPosts(e) {
     e.preventDefault();
 
-    const request = new Request("/api/getCurrentUser", {method: "get"});
+    const request = new Request("/api/getCurrentUser", { method: "get" });
 
     fetch(request).then((res) => {
-        if(res.status === 401){
+        if (res.status === 401) {
             window.location = '/login'
-        }else if(res.status === 200){
+        } else if (res.status === 200) {
             window.open("/pages/items.html");
             sessionStorage.setItem("all", "true");
         }
@@ -479,11 +479,11 @@ function deleteUserEntry(e) {
                 window.alert("Fail to delete this user.");
             }
         }).then((json) => {
-                // remove post in DOM
-                removeUser(e);
-                window.alert("You have deleted this user.");
-                document.querySelector('#userData').innerText = parseInt(json.userNum);
-            }
+            // remove post in DOM
+            removeUser(e);
+            window.alert("You have deleted this user.");
+            document.querySelector('#userData').innerText = parseInt(json.userNum);
+        }
         ).catch((error) => {
         })
     }
