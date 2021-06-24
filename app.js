@@ -3,10 +3,6 @@
 const express = require("express");
 const port = process.env.PORT || 3000;
 const session = require("express-session");
-const sgMail = require("@sendgrid/mail");
-sgMail.setApiKey(
-  "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"
-);
 const fs = require("fs");
 const mongoose = require("./db/mongoose").mongoose;
 const multer = require("multer");
@@ -14,9 +10,6 @@ const upload = multer({ dest: "public/uploads/" });
 
 const Post = require("./models/Post").Post;
 const User = require("./models/User").User;
-const Transaction = require("./models/Transaction").Transaction;
-const Chat = require("./models/Message").Chat;
-const Recovery = require("./models/Recovery").Recovery;
 
 const app = express();
 const ObjectID = require("mongodb").ObjectID;
@@ -35,7 +28,7 @@ app.use("/public/images", express.static(__dirname + "/public/images"));
 
 app.use(
   session({
-    secret: "UofTExchange",
+    secret: "BookExchange",
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -444,204 +437,6 @@ app.get("/api/getUserUnsafe/:username", (req, res) => {
     });
 });
 
-// create new chat between two users
-app.post("/api/createChat", authenticate, (req, res) => {
-  const user1 = req.user.username;
-  const user2 = req.body.user1;
-  if (user1 === user2) {
-    res.status(404).send();
-  }
-  Chat.findOne({
-    $or: [
-      { user1: user1, user2: user2 },
-      { user1: user2, user2: user1 },
-    ],
-  })
-    .then((chat) => {
-      if (chat !== null) {
-        res.send({ user: user1, chat: chat });
-      } else {
-        const newChat = new Chat({
-          user1: user1,
-          user2: user2,
-          user1Messages: [],
-          user2Messages: [],
-          messages: [],
-        });
-
-        newChat
-          .save()
-          .then((result) => {
-            if (!result) {
-              res.status(404).send();
-            } else {
-              res.send({ user: user1, chat: result });
-            }
-          })
-          .catch((error) => {
-            res.status(500).send();
-          });
-      }
-    })
-    .catch((error) => {
-      res.status(500).send();
-    });
-});
-
-// find the chat between two users
-app.get("/api/startChat/:user", authenticate, (req, res) => {
-  const user2 = req.params.user;
-  const user1 = req.user.username;
-
-  Chat.findOne({
-    $or: [
-      { user1: user1, user2: user2 },
-      { user1: user2, user2: user1 },
-    ],
-  })
-    .then((chat) => {
-      if (!chat) {
-        res.status(404).send();
-      } else {
-        res.send({ user: user1, chat: chat });
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).send();
-    });
-});
-
-// find all chat histories belonging to a user
-app.get("/api/allChats", authenticate, (req, res) => {
-  const username = req.user.username;
-  Chat.find({ $or: [{ user1: username }, { user2: username }] })
-    .then((chats) => {
-      if (!chats) {
-        res.status(404).send();
-      } else {
-        const usersToFind = chats.map((chat) => {
-          if (chat.user1 === username) {
-            return chat.user2;
-          } else {
-            return chat.user1;
-          }
-        });
-        User.find({ username: { $in: usersToFind } }).then((users) => {
-          if (!users) {
-            res.status(404).send();
-          } else {
-            const avatars = users.map((user) => {
-              return user.avatar;
-            });
-            res.send({ user: username, avatars: avatars, chats: chats });
-          }
-        });
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).send();
-    });
-});
-
-// add a new message to chat history
-app.post("/api/chat/:chatId", authenticate, (req, res) => {
-  const chatId = req.params.chatId;
-  const username = req.user.username;
-  if (!ObjectID.isValid(chatId)) {
-    res.status(404).send();
-  }
-
-  Chat.findById(chatId)
-    .then((chat) => {
-      if (!chat) {
-        res.status(404).send();
-      } else {
-        const newMessage = {
-          time: req.body.time,
-          sender: username,
-          content: req.body.content,
-        };
-        if (username === chat.user1 || username === chat.user2) {
-          chat.messages.push(newMessage);
-          if (username === chat.user1) {
-            chat.user1Messages.push(newMessage);
-          } else {
-            chat.user2Messages.push(newMessage);
-          }
-          chat.save().then((result) => {
-            res.send(result);
-          });
-        } else {
-          // unauthorized access
-          res.status(401).send();
-        }
-      }
-    })
-    .catch((error) => {
-      res.status(500).send();
-    });
-});
-
-// get a specific chat
-app.get("/api/chat/:chatId", authenticate, (req, res) => {
-  const chatId = req.params.chatId;
-  const username = req.user.username;
-
-  if (!ObjectID.isValid(chatId)) {
-    res.status(404).send();
-  }
-
-  Chat.findById(chatId)
-    .then((chat) => {
-      if (!chat) {
-        res.status(404).send();
-      } else {
-        if (username === chat.user1 || username === chat.user2) {
-          res.send({ user: username, chat: chat });
-        } else {
-          res.status(401).send();
-        }
-      }
-    })
-    .catch((error) => {
-      res.status(500).send();
-    });
-});
-
-// update chat history after loading new messages
-app.post("/api/loadChat/:chatId", authenticate, (req, res) => {
-  const chatId = req.params.chatId;
-  const user = req.user.username;
-
-  if (!ObjectID.isValid(chatId)) {
-    res.status(404).send();
-  }
-
-  Chat.findById(chatId)
-    .then((chat) => {
-      if (!chat) {
-        res.status(404).send();
-      } else {
-        if (user === chat.user1) {
-          chat.user2Messages = [];
-        } else if (user === chat.user2) {
-          chat.user1Messages = [];
-        } else {
-          res.status(401).send();
-          return;
-        }
-        chat.save().then((result) => {
-          res.send(result);
-        });
-      }
-    })
-    .catch((error) => {
-      res.status(500).send();
-    });
-});
-
 app.post("/api/changeProfilePicture", upload.single("image"), (req, res) => {
   if (!req.session.user) {
     res.status(401).send();
@@ -734,60 +529,6 @@ app.post("/api/updateBio/:newBio", (req, res) => {
   });
 });
 
-app.post("/api/sendCode/:email", (req, res) => {
-  const email = req.params.email;
-  User.findOne({ email: email })
-    .then((user) => {
-      if (!user) {
-        res.status(404).send();
-        return;
-      }
-      let code = "";
-      for (let i = 0; i < 6; i++) {
-        code += Math.floor(Math.random() * 10);
-      }
-      const msg = {
-        to: email,
-        from: "recovery@uoftexchange.ca",
-        subject: "Recovery your password",
-        text: "Your recovery code is " + code,
-      };
-
-      Recovery.findOne({ email: email })
-        .then((result) => {
-          if (result) {
-            result.code = code;
-            result.save().then((newUser) => {
-              sgMail.send(msg).catch((error) => {
-                console.log(error);
-              });
-              req.session.recoverEmail = email;
-              res.send();
-            });
-          } else {
-            const recovery = new Recovery({
-              email: email,
-              code: code,
-            });
-            recovery.save().then((newUser) => {
-              sgMail.send(msg).catch((error) => {
-                console.log(error);
-              });
-              res.send();
-            });
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          res.status(500).send();
-        });
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).send();
-    });
-});
-
 /****************** for dashboard *****************/
 // Middleware for authentication for resources
 const adminAuthenticate = (req, res, next) => {
@@ -820,20 +561,6 @@ app.get("/api/dashboard/posts", adminAuthenticate, (req, res) => {
         res.status(404).send();
       } else {
         res.send(posts);
-      }
-    })
-    .catch((error) => {
-      res.status(500).send();
-    });
-});
-
-app.get("/api/dashboard/transactions", adminAuthenticate, (req, res) => {
-  Transaction.find({ isComplete: false, isSubmitted: true })
-    .then((transactions) => {
-      if (!transactions) {
-        res.status(404).send();
-      } else {
-        res.send({ transactions: transactions });
       }
     })
     .catch((error) => {
@@ -966,85 +693,6 @@ app.delete("/api/dashboard/user/:user", adminAuthenticate, (req, res) => {
     });
 });
 
-app.post("/api/dashboard/transaction", adminAuthenticate, (req, res) => {
-  const transactionId = req.body.transactionId;
-  const approve = req.body.approve;
-
-  if (approve) {
-    Transaction.findByIdAndUpdate(transactionId, { $set: { isComplete: true } })
-      .then((transaction) => {
-        if (!transaction) {
-          res.status(404).send();
-        } else {
-          res.status(200).send();
-        }
-      })
-      .catch((error) => {
-        res.status(500).send();
-      });
-  } else {
-    Transaction.findByIdAndUpdate(transactionId, { $set: { isFailure: true } })
-      .then((transaction) => {
-        if (!transaction) {
-          res.status(404).send();
-        } else {
-          Post.findByIdAndUpdate(transaction.postId, {
-            $set: { isSold: false },
-          }).then((post) => {
-            if (!post) {
-              res.status(606).send();
-            } else {
-              res.status(200).send();
-            }
-          });
-        }
-      })
-      .catch((error) => {
-        res.status(500).send();
-      });
-  }
-});
-
-/****************************************************/
-
-app.post("/api/recover", (req, res) => {
-  if (!req.session.recoverEmail) {
-    res.status(401).send();
-  }
-  const code = req.body.code;
-  const email = req.session.recoverEmail;
-  const password = req.body.password;
-  Recovery.findOne({ email: email })
-    .then((entry) => {
-      if (!entry) {
-        res.status(401).send();
-      } else {
-        if (entry.code !== code) {
-          res.status(401).send();
-        } else {
-          User.findOne({ email: email }).then((user) => {
-            user.password = password;
-            user.save().then((newUser) => {
-              req.session.destroy((error) => {
-                if (error) {
-                  res.status(500).send(error);
-                } else {
-                  Recovery.findByIdAndDelete(entry._id).then((deleteEntry) => {
-                    res.send(newUser);
-                  });
-                }
-              });
-            });
-          });
-        }
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).send();
-    });
-});
-
 app.get("/userProfile", (req, res) => {
   res.sendFile(__dirname + "/public/pages/userProfile.html");
 });
@@ -1082,48 +730,6 @@ app.get("/api/isLogin", (req, res) => {
   }
 });
 
-app.get("/api/myPurchases", (req, res) => {
-  if (!req.session.user) {
-    res.status(401).send();
-    return;
-  }
-  const username = req.session.user;
-  Transaction.find({ buyer: username, isSubmitted: true })
-    .then((transactions) => {
-      const transactionIds = transactions.map((trans) => {
-        return trans.postId;
-      });
-      Post.find({ _id: { $in: transactionIds } }).then((posts) => {
-        User.findOne({ username: username }).then((user) => {
-          res.send({ posts: posts, user: user, transactions: transactions });
-        });
-      });
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).send();
-    });
-});
-
-app.get("/api/admin/userPurchases/:username", adminAuthenticate, (req, res) => {
-  const username = req.params.username;
-  Transaction.find({ buyer: username })
-    .then((transactions) => {
-      const transactionIds = transactions.map((trans) => {
-        return trans.postId;
-      });
-      Post.find({ _id: { $in: transactionIds } }).then((posts) => {
-        User.findOne({ username: username }).then((user) => {
-          res.send({ posts: posts, user: user, transactions: transactions });
-        });
-      });
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).send();
-    });
-});
-
 app.get("/api/myPosts", (req, res) => {
   if (!req.session.user) {
     res.status(401).send();
@@ -1145,170 +751,6 @@ app.get("/api/admin/userPosts/:username", adminAuthenticate, (req, res) => {
     });
   });
 });
-
-app.post("/api/sellItem", (req, res) => {
-  if (!req.session.user) {
-    res.status(401).send();
-    return;
-  }
-  const id = req.body.id;
-  const buyer = req.body.buyer;
-  const username = req.session.user;
-  Post.findById(id)
-    .then((post) => {
-      if (!post) {
-        res.status(404).send();
-        return;
-      }
-      if (post.seller !== username) {
-        res.status(401).send();
-        return;
-      }
-      if (post.isSold) {
-        res.status(400).send();
-      }
-      User.find({ username: buyer }).then((user) => {
-        if (!user) {
-          res.status(607).send();
-          return;
-        }
-        post.isSold = true;
-        post.buyer = buyer;
-        const transaction = new Transaction({
-          postId: post._id,
-          date: new Date(),
-          isComplete: true,
-          title: post.title,
-          amount: 0,
-          seller: req.session.user,
-          buyer: buyer,
-          handleByUser: true,
-          isSubmitted: true,
-          isFailure: false,
-        });
-        transaction.save().then((trans) => {
-          post.save().then((newPost) => {
-            User.find({ "shortlist._id": post._id }).then((users) => {
-              for (let i = 0; i < users.length; i++) {
-                users[i].shortlist.pull(post._id);
-                users[i]
-                  .save()
-                  .then((newUser) => {
-                    return;
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  });
-              }
-            });
-            res.status(200).send();
-          });
-        });
-      });
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).send();
-    });
-});
-
-app.post("/api/checkout", (req, res) => {
-  if (!req.session.user) {
-    res.status(401).send();
-    return;
-  }
-
-  const checkoutItems = req.body.items;
-  const transactions = [];
-  for (let i = 0; i < checkoutItems.length; i++) {
-    const transaction = new Transaction({
-      postId: checkoutItems[i]._id,
-      date: new Date(),
-      isComplete: false,
-      title: checkoutItems[i].title,
-      amount: checkoutItems[i].price,
-      seller: checkoutItems[i].seller,
-      buyer: req.session.user,
-      handleByUser: false,
-      isSubmitted: false,
-      isFailure: false,
-    });
-    transactions.push(transaction);
-  }
-  Transaction.insertMany(transactions)
-    .then((docs) => {
-      res.status(200).send();
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).send();
-    });
-});
-
-app.post("/api/submitPayment", (req, res) => {
-  if (!req.session.user) {
-    res.status(401).send();
-    return;
-  }
-  const checkoutItems = req.body.items;
-  const creditCardNumber = req.body.creditCardNumber;
-  //The index of items to be removed from user shorlist
-  User.findOne({ username: req.session.user })
-    .then((user) => {
-      for (let i = 0; i < checkoutItems.length; i++) {
-        user.shortlist.pull(checkoutItems[i]);
-        Transaction.findOne({ postId: checkoutItems[i]._id })
-          .then((trans) => {
-            trans.isSubmitted = true;
-            trans.creditCardNumber = creditCardNumber;
-            trans
-              .save()
-              .then((newTrans) => {
-                const postId = trans.postId;
-                Post.findByIdAndUpdate(postId, { $set: { isSold: true } }).then(
-                  (post) => {
-                    User.find({ "shortlist._id": post._id }).then((users) => {
-                      for (let i = 0; i < users.length; i++) {
-                        users[i].shortlist.pull(post._id);
-                        users[i]
-                          .save()
-                          .then((newUser) => {
-                            return;
-                          })
-                          .catch((error) => {
-                            console.log(error);
-                          });
-                      }
-                    });
-                  }
-                );
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }
-      user.save().catch((error) => {
-        console.log(error);
-      });
-      res.status(200).send();
-    })
-    .catch((error) => {
-      console.log(error);
-      res.status(500).send();
-    });
-});
-
-const sayHello = () => {
-  return "hello";
-};
-
-module.exports = {
-  sayHello,
-};
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}...`);
