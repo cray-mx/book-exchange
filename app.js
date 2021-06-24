@@ -1302,6 +1302,14 @@ app.post("/api/submitPayment", (req, res) => {
     });
 });
 
+const sayHello = () => {
+  return "hello";
+};
+
+module.exports = {
+  sayHello,
+};
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}...`);
 });

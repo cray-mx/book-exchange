@@ -28,7 +28,7 @@ function handleLogin(e) {
         }
     });
 
-    fetch(request).then(function(res) {
+    fetch(request).then(function (res) {
         if (res.status === 200) {
             alert("You have successfully logged in.");
             window.location = '/index.html';
@@ -37,4 +37,14 @@ function handleLogin(e) {
         }
 
     })
+}
+
+module.exports = {
+    loginFunction: function (username, password) {
+        let payload = {
+            username: username,
+            password: password
+        };
+        return payload;
+    }
 }
