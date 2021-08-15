@@ -21,9 +21,3 @@ This program use Node.js environment and requires a MongoDB connection, and a to
 You should also specify the port in the environment variable $PORT. If not specified, the server will be listening on port 3000 for debugging purpose.
 
 Then running app.js with Node.js will start the server.
-
-
-# Copyright:
-This README.md is written by @RuiqiW
-
-And the project is written by @Willqie @ericpko @tinally @RuiqiW
